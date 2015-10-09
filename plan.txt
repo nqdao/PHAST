@@ -1,0 +1,22 @@
+-user inputs start and end locations in ui and sends request
+
+-x closest bixi stations with bikes are obtained for start location
+-y closest bixi stations with spaces are obtained for end location
+
+-server polls google for top permutations' times as well as public transit time
+
+-historical data used for each station in terms of availability of spaces/bikes to determine probability
+of path with most likelihood of availibilities
+
+-push list of paths with times and probabilities as well as public transit option
+
+-user selects path
+
+-if subway, don't care
+
+optional: 	-if bus or streetcar, on the way to station, monitor for collisions and blockages using cvst
+		-if blockage occurs on expected path, alert user of change and offer new options
+
+-if bike, set up automatic sending of location data
+-(A) as reports come back from cvst for destination station subset, update route calculations based on projected location (PLix) in x minutes
+-if, based on calculations involving historical data, original destination station is below threshold of probabalistically having open slots upon arrival time, alert user, push new routes from PLix to end locations, go to (A)q
