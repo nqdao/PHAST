@@ -15,7 +15,7 @@ class BixiRoutes:
 		for station in self.CVST.stations:
 			distance = self.get_distance(location,station["coordinates"])
 			if len(closest) < number_of_stations:
-				closest.append({"id": station["station_id"], "distance": distance, 
+				closest.append({"station_id": station["station_id"], "distance": distance, 
 					"coordinates": station["coordinates"]})
 			else:
 				max_location = 0
@@ -27,7 +27,7 @@ class BixiRoutes:
 
 				if distance < closest[max_location]["distance"]:
 					del closest[max_location]
-					closest.append({"id": station["station_id"], "distance": distance, 
+					closest.append({"station_id": station["station_id"], "distance": distance, 
 						"coordinates": station["coordinates"]})
 
 		return closest

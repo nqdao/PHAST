@@ -1,0 +1,1282 @@
+[
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.66207, 
+            "lng": -79.37617
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:45 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:02:34 -0000", 
+        "station_id": 1, 
+        "station_name": "Jarvis St / Carlton St", 
+        "terminalName": "7055", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6636, 
+            "lng": -79.3806
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 1, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:07 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:18:01 -0000", 
+        "station_id": 5, 
+        "station_name": "Church St / Alexander St", 
+        "terminalName": "7044", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6582, 
+            "lng": -79.3768
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 20, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:28:58 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:36:10 -0000", 
+        "station_id": 6, 
+        "station_name": "Gould St / Mutual St", 
+        "terminalName": "7028", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.667333, 
+            "lng": -79.399429
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 10, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:31:40 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:18:20 -0000", 
+        "station_id": 7, 
+        "station_name": "St George St / Bloor St W", 
+        "terminalName": "7002", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.667158, 
+            "lng": -79.402761
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:27 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:15:21 -0000", 
+        "station_id": 8, 
+        "station_name": "Madison Ave / Bloor St W", 
+        "terminalName": "7003", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.645323, 
+            "lng": -79.395003
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:46 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:32:44 -0000", 
+        "station_id": 9, 
+        "station_name": "King St W / Spadina Ave", 
+        "terminalName": "7010", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.656152, 
+            "lng": -79.385225
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 12, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:24:19 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:24:18 -0000", 
+        "station_id": 10, 
+        "station_name": "Elizabeth St / Edward St", 
+        "terminalName": "7012", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.64656, 
+            "lng": -79.375274
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 6, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:28 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:12:22 -0000", 
+        "station_id": 11, 
+        "station_name": "Scott St / The Esplanade", 
+        "terminalName": "7013", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.640823, 
+            "lng": -79.376265
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 19, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:47 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:49:48 -0000", 
+        "station_id": 12, 
+        "station_name": "Ferry Ramp / Queens Quay W", 
+        "terminalName": "7016", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.650855, 
+            "lng": -79.379492
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 13, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:27:02 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:58:29 -0000", 
+        "station_id": 13, 
+        "station_name": "Temperance St / Yonge St", 
+        "terminalName": "7019", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.650858, 
+            "lng": -79.387582
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:24:15 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:24:13 -0000", 
+        "station_id": 14, 
+        "station_name": "Simcoe St / Queen St W", 
+        "terminalName": "7022", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6571, 
+            "lng": -79.4056
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:21:36 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:45:55 -0000", 
+        "station_id": 15, 
+        "station_name": "College St / Borden St", 
+        "terminalName": "7023", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.666814, 
+            "lng": -79.381385
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:01 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:45:14 -0000", 
+        "station_id": 16, 
+        "station_name": "Church St/ Monteith St (Barbara Hall Park)", 
+        "terminalName": "7024", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.671293, 
+            "lng": -79.380471
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 17, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:33 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:48:35 -0000", 
+        "station_id": 17, 
+        "station_name": "Ted Rogers Way ", 
+        "terminalName": "7025", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.650033, 
+            "lng": -79.396555
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 27, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:23:47 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:23:46 -0000", 
+        "station_id": 18, 
+        "station_name": "Phoebe St / Spadina Ave", 
+        "terminalName": "7020", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.652823, 
+            "lng": -79.393388
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 15, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:24:47 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:19:53 -0000", 
+        "station_id": 19, 
+        "station_name": "Beverly  St / Dundas St W", 
+        "terminalName": "7027", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.669192, 
+            "lng": -79.379128
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 15, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:33:02 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:18:56 -0000", 
+        "station_id": 20, 
+        "station_name": "Jarvis St / Isabella St", 
+        "terminalName": "7031", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.671389, 
+            "lng": -79.382919
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 10, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:25:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:25:54 -0000", 
+        "station_id": 21, 
+        "station_name": "Church St / Bloor St E", 
+        "terminalName": "7034", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6523, 
+            "lng": -79.4058
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:00 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:48:18 -0000", 
+        "station_id": 22, 
+        "station_name": "Bathurst St / Dundas St", 
+        "terminalName": "7037", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.656094, 
+            "lng": -79.381484
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:11 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:22:09 -0000", 
+        "station_id": 23, 
+        "station_name": "Dundas St / Yonge St", 
+        "terminalName": "7038", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.653743, 
+            "lng": -79.38882
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 23, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:31:33 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:36:45 -0000", 
+        "station_id": 24, 
+        "station_name": "Simcoe St / Dundas St W", 
+        "terminalName": "7039", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.656729, 
+            "lng": -79.382736
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 15, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:22 -0000", 
+        "last_update": "Sat, 10 Oct 2015 15:50:23 -0000", 
+        "station_id": 25, 
+        "station_name": "Edward St / Yonge St", 
+        "terminalName": "7041", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6673, 
+            "lng": -79.374
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 27, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:27 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:15:35 -0000", 
+        "station_id": 26, 
+        "station_name": "Sherbourne St / Wellesley St", 
+        "terminalName": "7042", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.640016, 
+            "lng": -79.383186
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 17, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:25:17 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:25:16 -0000", 
+        "station_id": 27, 
+        "station_name": "Lower Simcoe St / Lakeshore Blvd W", 
+        "terminalName": "7043", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.653236, 
+            "lng": -79.376716
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:27:14 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:13:07 -0000", 
+        "station_id": 28, 
+        "station_name": "Bond St / Queen St E", 
+        "terminalName": "7045", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.664953, 
+            "lng": -79.384423
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:29:55 -0000", 
+        "station_id": 29, 
+        "station_name": "Wellesley St E. / Yonge St", 
+        "terminalName": "7051", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.652175, 
+            "lng": -79.400913
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 6, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:46 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:22:45 -0000", 
+        "station_id": 30, 
+        "station_name": "Augusta Ave / Dundas St W", 
+        "terminalName": "7032", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.645859, 
+            "lng": -79.38783
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 10, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:12:49 -0000", 
+        "station_id": 31, 
+        "station_name": "Metro Hall Plaza", 
+        "terminalName": "7053", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.640722, 
+            "lng": -79.391051
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 10, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:45 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:32:43 -0000", 
+        "station_id": 32, 
+        "station_name": "Navy Wharf Ct. / Bremner Blvd.", 
+        "terminalName": "7054", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.645533, 
+            "lng": -79.3854
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:31:40 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:03:29 -0000", 
+        "station_id": 33, 
+        "station_name": "Simcoe St / Wellington St W", 
+        "terminalName": "7057", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6637, 
+            "lng": -79.400053
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 13, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:28 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:30:08 -0000", 
+        "station_id": 34, 
+        "station_name": "Huron/ Harbord St", 
+        "terminalName": "7058", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.665876, 
+            "lng": -79.407224
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:15 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:12:09 -0000", 
+        "station_id": 35, 
+        "station_name": "Bloor St / Brunswick Ave", 
+        "terminalName": "7061", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.668327, 
+            "lng": -79.39355
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 11, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:14 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:18:09 -0000", 
+        "station_id": 36, 
+        "station_name": "Queens Park / Bloor St W", 
+        "terminalName": "7063", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.659575, 
+            "lng": -79.365769
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 6, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:53 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:23:19 -0000", 
+        "station_id": 37, 
+        "station_name": "Dundas St / Parliament St", 
+        "terminalName": "7065", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.662237, 
+            "lng": -79.397716
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:19 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:29:17 -0000", 
+        "station_id": 38, 
+        "station_name": "Willcocks St / St. George St", 
+        "terminalName": "7066", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.643795, 
+            "lng": -79.375413
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 12, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:02 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:26:01 -0000", 
+        "station_id": 39, 
+        "station_name": "Yonge St. / Lakeshore Ave. E.", 
+        "terminalName": "7067", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.644272, 
+            "lng": -79.367766
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 15, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:33:18 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:14:42 -0000", 
+        "station_id": 40, 
+        "station_name": "Dockside Dr / Queens Quay E.", 
+        "terminalName": "7068", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.649147, 
+            "lng": -79.395504
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 3, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:27 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:01:16 -0000", 
+        "station_id": 41, 
+        "station_name": "Queen St W / Spadina Ave", 
+        "terminalName": "7069", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.643667, 
+            "lng": -79.380414
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 4, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:58 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:01:46 -0000", 
+        "station_id": 42, 
+        "station_name": "25 York St (ACC/Union Station South)", 
+        "terminalName": "7070", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.644524, 
+            "lng": -79.416519
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 6, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:24:13 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:13:00 -0000", 
+        "station_id": 43, 
+        "station_name": "Queen St W / Shaw St", 
+        "terminalName": "7072", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.664137, 
+            "lng": -79.402496
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 22, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:44 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:51:41 -0000", 
+        "station_id": 44, 
+        "station_name": "Spadina Ave / Sussex Ave", 
+        "terminalName": "7074", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.636533, 
+            "lng": -79.395854
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 4, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:23:39 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:55:29 -0000", 
+        "station_id": 45, 
+        "station_name": "Queens Quay W / Dan Leckie Way", 
+        "terminalName": "7075", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.640132, 
+            "lng": -79.380464
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 16, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:29:10 -0000", 
+        "station_id": 46, 
+        "station_name": "York St / Queens Quay W", 
+        "terminalName": "7076", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.659777, 
+            "lng": -79.382767
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:33 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:25:07 -0000", 
+        "station_id": 47, 
+        "station_name": "College Park South", 
+        "terminalName": "7077", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.659778, 
+            "lng": -79.37978
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 3, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:10 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:15:04 -0000", 
+        "station_id": 48, 
+        "station_name": "Gerrard St E / Church St", 
+        "terminalName": "7079", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.647145, 
+            "lng": -79.391479
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:19:25 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:19:24 -0000", 
+        "station_id": 49, 
+        "station_name": "Widmer St / Adelaide St ", 
+        "terminalName": "7017", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.641529, 
+            "lng": -79.386741
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 14, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:52 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:22:51 -0000", 
+        "station_id": 50, 
+        "station_name": "Bremner Blvd / Rees St", 
+        "terminalName": "7018", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.639832, 
+            "lng": -79.395954
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:33:16 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:51:00 -0000", 
+        "station_id": 51, 
+        "station_name": "Ft. York / Capreol Crt.", 
+        "terminalName": "7000", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.647992, 
+            "lng": -79.370907
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 3, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:09 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:26:08 -0000", 
+        "station_id": 52, 
+        "station_name": "Lower Jarvis St / The Esplanade", 
+        "terminalName": "7001", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.656518, 
+            "lng": -79.389099
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:15 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:15:10 -0000", 
+        "station_id": 53, 
+        "station_name": "University Ave / Elm St", 
+        "terminalName": "7004", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.648093, 
+            "lng": -79.384749
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 12, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:49 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:42:28 -0000", 
+        "station_id": 54, 
+        "station_name": "University Ave / King St W", 
+        "terminalName": "7005", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.642982, 
+            "lng": -79.399256
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:57 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:27:12 -0000", 
+        "station_id": 55, 
+        "station_name": "Wellington St / Portland St", 
+        "terminalName": "7011", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.663102, 
+            "lng": -79.373181
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:28:41 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:28:39 -0000", 
+        "station_id": 56, 
+        "station_name": "Sherbourne / Carlton (Allan Gardens)", 
+        "terminalName": "7014", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.64852, 
+            "lng": -79.380576
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 23, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:31:41 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:51:35 -0000", 
+        "station_id": 57, 
+        "station_name": "King St W / Bay St", 
+        "terminalName": "7015", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.643975, 
+            "lng": -79.419576
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:39 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:08:32 -0000", 
+        "station_id": 58, 
+        "station_name": "Queen St / Ossington Ave", 
+        "terminalName": "7035", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.651318, 
+            "lng": -79.36023
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:25:31 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:25:30 -0000", 
+        "station_id": 59, 
+        "station_name": "Trinity St/ Front St E", 
+        "terminalName": "7036", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6643, 
+            "lng": -79.415
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 15, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:23 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:22:23 -0000", 
+        "station_id": 60, 
+        "station_name": "Euclid Ave / Bloor St", 
+        "terminalName": "7040", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.653264, 
+            "lng": -79.382458
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:25:35 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:11:29 -0000", 
+        "station_id": 61, 
+        "station_name": "Bay St / Albert St", 
+        "terminalName": "7021", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.64534, 
+            "lng": -79.409597
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 6, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:52 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:15:45 -0000", 
+        "station_id": 62, 
+        "station_name": "Niagara St. / Richmond St. W.", 
+        "terminalName": "7046", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.657763, 
+            "lng": -79.389165
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 10, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:27:06 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:43:06 -0000", 
+        "station_id": 63, 
+        "station_name": "University Ave / Gerrard St W", 
+        "terminalName": "7047", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.646144, 
+            "lng": -79.377962
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 12, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:27:51 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:58:55 -0000", 
+        "station_id": 64, 
+        "station_name": "Front/Yonge (Hockey Hall of Fame)", 
+        "terminalName": "7048", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6476, 
+            "lng": -79.4015
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 1, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:18 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:32:16 -0000", 
+        "station_id": 65, 
+        "station_name": "Queen St / Portland St", 
+        "terminalName": "7049", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.652634, 
+            "lng": -79.374222
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:22:27 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:22:26 -0000", 
+        "station_id": 66, 
+        "station_name": "Richmond St E / Jarvis St", 
+        "terminalName": "7050", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.643473, 
+            "lng": -79.390477
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 8, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:13 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:44:08 -0000", 
+        "station_id": 67, 
+        "station_name": "Front St W / Blue Jays Way", 
+        "terminalName": "7059", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.652123, 
+            "lng": -79.367139
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:29 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:25:02 -0000", 
+        "station_id": 68, 
+        "station_name": "Princess Ave / Adelaide St", 
+        "terminalName": "7060", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.659226, 
+            "lng": -79.390213
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:20 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:30:18 -0000", 
+        "station_id": 69, 
+        "station_name": "University Ave / College St", 
+        "terminalName": "7062", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.65205, 
+            "lng": -79.362198
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:36 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:01:51 -0000", 
+        "station_id": 70, 
+        "station_name": "51 Parliament St", 
+        "terminalName": "7064", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6354, 
+            "lng": -79.3984
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 6, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:36 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:30:34 -0000", 
+        "station_id": 71, 
+        "station_name": "Bathurst / Queens Quay (Island Airport)", 
+        "terminalName": "7071", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.640903, 
+            "lng": -79.392895
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:32:55 -0000", 
+        "station_id": 72, 
+        "station_name": "Bremner / Spadina", 
+        "terminalName": "7073", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.660422, 
+            "lng": -79.385441
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 9, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:24:03 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:55:15 -0000", 
+        "station_id": 73, 
+        "station_name": "Bay St / College St", 
+        "terminalName": "7006", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.669429, 
+            "lng": -79.389326
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 3, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:32:22 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:32:20 -0000", 
+        "station_id": 74, 
+        "station_name": "Bay St / Bloor St W", 
+        "terminalName": "7029", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.647331, 
+            "lng": -79.379673
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 19, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:27:36 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:13:30 -0000", 
+        "station_id": 75, 
+        "station_name": "Wellington St W / Bay St", 
+        "terminalName": "7052", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.650325, 
+            "lng": -79.372287
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 5, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:26:51 -0000", 
+        "last_update": "Sat, 10 Oct 2015 16:56:40 -0000", 
+        "station_id": 76, 
+        "station_name": "King St E / Jarvis St", 
+        "terminalName": "7009", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.658148, 
+            "lng": -79.398167
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 3, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:28:33 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:28:30 -0000", 
+        "station_id": 77, 
+        "station_name": "College St / Huron St", 
+        "terminalName": "7007", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.6576, 
+            "lng": -79.4032
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:33:05 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:32:59 -0000", 
+        "station_id": 78, 
+        "station_name": "College St / Major St", 
+        "terminalName": "7078", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.665527, 
+            "lng": -79.387499
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 11, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:25:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:03:28 -0000", 
+        "station_id": 79, 
+        "station_name": "Bay St / St. Joseph St", 
+        "terminalName": "7026", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.664088, 
+            "lng": -79.387095
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 20, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:28:20 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:13:42 -0000", 
+        "station_id": 80, 
+        "station_name": "Bay St / Wellesley St W", 
+        "terminalName": "7030", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.661149, 
+            "lng": -79.366648
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 11, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:30:18 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:02:05 -0000", 
+        "station_id": 82, 
+        "station_name": "Parliament St / Gerrard St", 
+        "terminalName": "7056", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.663376, 
+            "lng": -79.392125
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 17, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:29:56 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:15:50 -0000", 
+        "station_id": 83, 
+        "station_name": "Wellesley/Queen's Park", 
+        "terminalName": "7008", 
+        "timestamp": 1444498501
+    }, 
+    {
+        "bikes": 0, 
+        "coordinates": {
+            "lat": 43.645566, 
+            "lng": -79.379438
+        }, 
+        "date_time": "Sat, 10 Oct 2015 17:35:01 -0000", 
+        "empty_docks": 7, 
+        "installed": true, 
+        "last_seen": "Sat, 10 Oct 2015 17:31:43 -0000", 
+        "last_update": "Sat, 10 Oct 2015 17:17:00 -0000", 
+        "station_id": 88, 
+        "station_name": "Union Station ", 
+        "terminalName": "7033", 
+        "timestamp": 1444498501
+    }
+]
