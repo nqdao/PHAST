@@ -22,8 +22,8 @@ class Bixis:
                 json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):
-        temp_stations = self.CVST.get_all_current_stations()
-        for station in temp_stations:
+        station_list = self.CVST.get_all_current_stations()
+        for station in station_list:
             # determine lat and long (note that this will only work for locations
             # in both the north and western hemispheres)
             print "working on station {}".format(station["station_id"])
@@ -86,15 +86,21 @@ class Bixis:
         # if __name__ == "__main__":
         # 	main()
 
+
 if __name__ == '__main__':
-    bixis = Bixis.Bixis()
+    bixis = Bixis()
     while True:
-        updates = bixis.CVST.get_all_current_stations()
-        for i = 0 to updates:len():
+        updated_station_list = bixis.CVST.get_all_current_stations()
+        for updated_station in updated_station_list:
+            for station in bixis.stations:
+                if updated_station["station_id"] == station["station_id"]:
+                    print "updated_station ", updated_station["station_id"], "station", station["station_id"]
+                    for key in updated_station:
+                        print key
+                        station[key] = updated_station[key]
+                    print station["max_docks"]
 
-
-
-
-        time.sleep(300)
-
-
+        print "updating CVST data"
+        with open(bixis.STATIONS_FILE, 'w') as outfile:
+            json.dump(bixis.stations, outfile, indent=4, sort_keys=True)
+        time.sleep(10)
