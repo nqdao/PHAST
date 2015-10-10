@@ -19,4 +19,14 @@ optional: 	-if bus or streetcar, on the way to station, monitor for collisions a
 
 -if bike, set up automatic sending of location data
 -(A) as reports come back from cvst for destination station subset, update route calculations based on projected location (PLix) in x minutes
--if, based on calculations involving historical data, original destination station is below threshold of probabalistically having open slots upon arrival time, alert user, push new routes from PLix to end locations, go to (A)q
+-if, based on calculations involving historical data, original destination station is below threshold of probabalistically having open slots upon arrival time, alert user, push new routes from PLix to end locations, go to (A)
+
+
+
+
+
+needs:
+heat and ceilometer
+spark
+google api
+
