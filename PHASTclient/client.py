@@ -1,5 +1,7 @@
 __author__ = 'Nhat-Quang'
 import socket
+import json
+from pprint import pprint
 
 HOST = 'localhost'    # The remote host
 PORT = 6633              # The same port as used by the server
@@ -9,3 +11,4 @@ s.sendall('Hello, world')
 data = s.recv(1024)
 s.close()
 print 'Received', repr(data)
+print(json.loads(data))
