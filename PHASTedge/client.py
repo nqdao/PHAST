@@ -1,7 +1,6 @@
 __author__ = 'Nhat-Quang'
 import socket
 import json
-from pprint import pprint
 
 HOST = 'localhost'    # The remote host
 PORT = 6633              # The same port as used by the server
