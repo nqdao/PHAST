@@ -12,13 +12,18 @@ class Bixis:
 		self.routes = {}	
 		self.CVST = CVSTInterface.CVSTInterface()
 		self.stations = []
-		if os.path.isfile(self.STATIONS_FILE):
-			with open(self.STATIONS_FILE) as data_file:
-				self.stations = json.load(data_file)
-		else:
-			self.populate_station_locations()
-			with open(self.STATIONS_FILE,'w') as outfile:
-				json.dump(self.stations, outfile, indent=4, sort_keys=True)
+
+		# open up and store the stations if the db file containing their general information
+		# already exists.
+		# should the db file not exist, build it.
+		
+		# if os.path.isfile(self.STATIONS_FILE):
+		with open(self.STATIONS_FILE) as data_file:
+			self.stations = json.load(data_file)
+		# else:
+		# 	self.populate_station_locations()
+		# 	with open(self.STATIONS_FILE,'w') as outfile:
+		# 		json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
 	def populate_station_locations(self):
 		temp_stations = self.CVST.get_all_current_stations()

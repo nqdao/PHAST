@@ -11,14 +11,15 @@ test_locs = {
 							}
 			}
 
-class RoutingProcess:
+class Routing:
 
 	def __init__(self):
 		self.bixis = Bixis.Bixis()
 		self.gmaps = GoogleMapsInterface.GoogleMapsInterface()
+		self.test_routes = {}
 
 	def build_path(self,start_location,destination_location):
-		# 1) find closest bixi to start
+		# 1) find closest bixis to start
 		start_bixi = self.viable_locations(start_location,1)[0]
 
 		# 2) find closest bixi to destination
