@@ -2,14 +2,14 @@ import Bixis
 import GoogleMapsInterface
 import json
 
-#test locations
+# test locations
 test_locs = {
-				"dest" : '370 Queen St W, Toronto, ON',
-				"start" :	{
-							"lat":43.659865,
-							"lng":-79.396703
-							}
-			}
+    "dest": '370 Queen St W, Toronto, ON',
+    "start": {
+        "lat": 43.659865,
+        "lng": -79.396703
+    }
+}
 
 class Routing:
 
@@ -92,12 +92,13 @@ class Routing:
 			print "\n{}\n".format("*"*50)
 
 def main():
-	test_routes = Routing()
-	test_routes.build_directions_matrix(test_locs["start"],test_locs["dest"])
-	test_routes.export_routes_to_file(test_routes.bixis.routes,"test_paths.json")
+    test_routes = Routing()
+    test_routes.build_directions_matrix(test_locs["start"], test_locs["dest"])
+    test_routes.export_routes_to_file(test_routes.bixis.routes, "test_paths.json")
 
-	# path = test_routes.build_path(start,dest)
-	# test_routes.print_route(path)
 
-if __name__=="__main__":
-	main()
+# path = test_routes.build_path(start,dest)
+# test_routes.print_route(path)
+
+if __name__ == "__main__":
+    main()

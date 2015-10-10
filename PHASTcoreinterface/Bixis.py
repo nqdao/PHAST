@@ -3,9 +3,10 @@
 
 import CVSTInterface
 import os, math, json
+import time
+
 
 class Bixis:
-
 	STATIONS_FILE = "stations.json"
 
 	def __init__(self):	

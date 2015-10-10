@@ -15,12 +15,17 @@
 	- passing of location updates from user to associated routing thread
 	- removal of association upon thread completion
 """
+
+import coreserver
+import uuid
+
 class Monitor:
 
 	def __init__():
 		pass
 
-	def 
+	def new_routing(self,user_id):
+		
 
 def main():
 	pass
