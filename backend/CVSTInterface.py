@@ -9,38 +9,6 @@ import datetime
 class CVSTInterface:
 
 	BASE_URL = "http://portal.cvst.ca/api/0.1/bixi"
-	STATIONS_FILE = "stations.txt"
-
-	def __init__(self):
-		self.stations = []
-		if os.path.isfile(self.STATIONS_FILE):
-			with open(self.STATIONS_FILE) as data_file:
-				stations_json = json.load(data_file)
-			for station in stations_json:
-				self.stations.append(station)
-		else:
-			self.populate_station_locations()
-			with open(self.STATIONS_FILE,'w') as outfile:
-				json.dump(self.stations, outfile, indent=4, sort_keys=True)
-
-	def populate_station_locations(self):
-		temp_stations = requests.get("{}".format(self.BASE_URL)).json()
-		for station in temp_stations:
-			# determine lat and long (note that this will only work for locations
-			# in both the north and western hemispheres)
-			print "working on station {}".format(station["station_id"])
-			if station["coordinates"][0] < 0:
-				lat = station["coordinates"][1]
-				lng = station["coordinates"][0]
-			else:
-				lng = station["coordinates"][1]
-				lat = station["coordinates"][0]
-
-			del station["coordinates"]
-			station["coordinates"] = {"lat":lat, "lng":lng}
-
-			station["max_docks"] = self.get_maximum_docks(station["station_id"])
-			self.stations.append(station)
 
 	def get_current_station_data(self, station_id_list):
 		requested_stations = {}
@@ -48,6 +16,9 @@ class CVSTInterface:
 			requested_stations["{}".format(station_id)] = requests.get("{0}/{1}".format(
 				self.BASE_URL,station_id)).json()[0]
 		return requested_stations
+
+	def get_all_current_stations(self):
+		return requests.get("{}".format(self.BASE_URL)).json()
 
 	def get_maximum_docks(self,station_id):
 		dt = datetime.datetime.now()

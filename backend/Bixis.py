@@ -1,18 +1,47 @@
 # a module to obtain routes from bixi station information user starting location
 # all coordinates assumed to be of the form [latitude, longitude]
 
-import math
 import CVSTInterface
+import os, math, json
 
-class BixiRoutes:
+class Bixis:
 
-	def __init__(self):
+	STATIONS_FILE = "stations.json"
+
+	def __init__(self):	
+		self.routes = {}	
 		self.CVST = CVSTInterface.CVSTInterface()
-		self.routes = {}
+		self.stations = []
+		if os.path.isfile(self.STATIONS_FILE):
+			with open(self.STATIONS_FILE) as data_file:
+				self.stations = json.load(data_file)
+		else:
+			self.populate_station_locations()
+			with open(self.STATIONS_FILE,'w') as outfile:
+				json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
-	def get_closest(self,location, number_of_stations):
+	def populate_station_locations(self):
+		temp_stations = self.CVST.get_all_current_stations()
+		for station in temp_stations:
+			# determine lat and long (note that this will only work for locations
+			# in both the north and western hemispheres)
+			print "working on station {}".format(station["station_id"])
+			if station["coordinates"][0] < 0:
+				lat = station["coordinates"][1]
+				lng = station["coordinates"][0]
+			else:
+				lng = station["coordinates"][1]
+				lat = station["coordinates"][0]
+
+			del station["coordinates"]
+			station["coordinates"] = {"lat":lat, "lng":lng}
+
+			station["max_docks"] = self.CVST.get_maximum_docks(station["station_id"])
+			self.stations.append(station)
+
+	def get_closest_stations(self,location, number_of_stations):
 		closest = []
-		for station in self.CVST.stations:
+		for station in self.stations:
 			distance = self.get_distance(location,station["coordinates"])
 			if len(closest) < number_of_stations:
 				closest.append({"station_id": station["station_id"], "distance": distance, 

@@ -1,4 +1,4 @@
-import BixiRoutes
+import Bixis
 import GoogleMapsInterface
 import json
 
@@ -11,10 +11,10 @@ test_locs = {
 							}
 			}
 
-class Routing:
+class RoutingProcess:
 
 	def __init__(self):
-		self.bixis = BixiRoutes.BixiRoutes()
+		self.bixis = Bixis.Bixis()
 		self.gmaps = GoogleMapsInterface.GoogleMapsInterface()
 
 	def build_path(self,start_location,destination_location):
@@ -47,7 +47,7 @@ class Routing:
 		# 	geocode = location
 
 		# print "after location:\t{}".format(location)
-		return self.bixis.get_closest(location,number_of_locations)
+		return self.bixis.get_closest_stations(location,number_of_locations)
 		# add check for free spaces later
 
 	def convert_string_to_geocode(self,location_string):
@@ -92,8 +92,8 @@ class Routing:
 
 def main():
 	test_routes = Routing()
-	# test_routes.build_directions_matrix(test_locs["start"],test_locs["dest"])
-	# test_routes.export_routes_to_file(test_routes.bixis.routes,"bixi_file.txt")
+	test_routes.build_directions_matrix(test_locs["start"],test_locs["dest"])
+	test_routes.export_routes_to_file(test_routes.bixis.routes,"test_paths.json")
 
 	# path = test_routes.build_path(start,dest)
 	# test_routes.print_route(path)
