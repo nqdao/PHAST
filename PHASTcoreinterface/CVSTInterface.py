@@ -8,7 +8,7 @@ import datetime
 
 
 class CVSTInterface:
-    
+
     BASE_URL = "http://portal.cvst.ca/api/0.1/bixi"
 
     def get_current_station_data(self, station_id_list):
@@ -50,14 +50,18 @@ class CVSTInterface:
         # times should be string in the form of "<YYYY><MM><DD>T<HH><MM><Timezone>""
         stations_to_return = []
 
+        if (start_time is None) or (end_time is None):
+            print "Start and end times required"
+            return -1
+
         if type(station_id_list) == list:
             for station_id in station_id_list:
-                stations_to_return.append(requests.get("{0}/{1}?timestamp={2}".format(self.BASE_URL,
-                                                                                      station_id, end_time)).json())
+                stations_to_return.append(requests.get("{0}/{1}?starttime={2}&endtime={3}".format(
+                    self.BASE_URL,station_id, start_time,end_time)).json())
         else:
             # print "{0}/{1}?timestamp={2}".format(self.BASE_URL,station_id_list,end_time)
-            stations_to_return.append(requests.get("{0}/{1}?timestamp={2}".format(self.BASE_URL,
-                                                                                  station_id_list, end_time)).json())
+            stations_to_return.append(requests.get("{0}/{1}?starttime={2}&endtime={3}".format(
+                self.BASE_URL,station_id, start_time,end_time)).json())
 
         # print stations_to_return
         return stations_to_return
