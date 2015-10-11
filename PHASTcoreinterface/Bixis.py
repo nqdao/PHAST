@@ -8,9 +8,7 @@ import time
 
 class Bixis:
 
-    STATIONS_FILE = "stations.json"
-
-    def __init__(self):
+    def __init__(self, stations_file):
         self.routes = {}
         self.CVST = CVSTInterface.CVSTInterface()
         self.stations = []
@@ -18,14 +16,14 @@ class Bixis:
         # open up and store the stations if the db file containing their general information
         # already exists.
         # should the db file not exist, build it.
-
-        if os.path.isfile(self.STATIONS_FILE):
-            with open(self.STATIONS_FILE) as data_file:
-                self.stations = json.load(data_file)
-        else:
-            self.populate_station_locations()
-            with open(self.STATIONS_FILE,'w') as outfile:
-        		json.dump(self.stations, outfile, indent=4, sort_keys=True)
+        
+        # if os.path.isfile(self.STATIONS_FILE):
+        with open(stations_file) as data_file:
+            self.stations = json.load(data_file)
+            # else:
+            # 	self.populate_station_locations()
+            # 	with open(self.STATIONS_FILE,'w') as outfile:
+            # 		json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):
         temp_stations = self.CVST.get_all_current_stations()
@@ -46,37 +44,80 @@ class Bixis:
             station["max_docks"] = self.CVST.get_maximum_docks(station["station_id"])
             self.stations.append(station)
 
-    def get_closest_stations(self, location, number_of_stations):
-        closest = []
-        for station in self.stations:
-            distance = self.get_distance(location, station["coordinates"])
-            if len(closest) < number_of_stations:
-                closest.append({"station_id": station["station_id"], "distance": distance,
-                                "coordinates": station["coordinates"]})
-            else:
-                max_location = 0
-                index = 0
-                for close_station in closest:
-                    if close_station["distance"] > closest[max_location]["distance"]:
-                        max_location = index
-                    index = index + 1
+    def get_closest_stations(self, location, stations_list, 
+                                number_of_stations, least=0,
+                                least_test=None):
 
-                if distance < closest[max_location]["distance"]:
-                    del closest[max_location]
+        closest = []
+        # print stations_list[0]
+        for station in stations_list:
+            # only test for a minimum number of bikes if least bikes has been set
+            if least_test == "bikes":
+                if station["max_docks"] - station["empty_docks"] >= least:
+                    distance = self.get_distance(location, station["coordinates"])
+                    if len(closest) < number_of_stations:
+                        closest.append({"station_id": station["station_id"], "distance": distance,
+                                        "coordinates": station["coordinates"]})
+                    else:
+                        max_location = 0
+                        index = 0
+                        for close_station in closest:
+                            if close_station["distance"] > closest[max_location]["distance"]:
+                                max_location = index
+                            index = index + 1
+
+                        if distance < closest[max_location]["distance"]:
+                            del closest[max_location]
+                            closest.append({"station_id": station["station_id"], "distance": distance,
+                                            "coordinates": station["coordinates"]})
+
+            elif least_test == "docks":
+                if station["empty_docks"] >= least:
+                    distance = self.get_distance(location, station["coordinates"])
+                    if len(closest) < number_of_stations:
+                        closest.append({"station_id": station["station_id"], "distance": distance,
+                                        "coordinates": station["coordinates"]})
+                    else:
+                        max_location = 0
+                        index = 0
+                        for close_station in closest:
+                            if close_station["distance"] > closest[max_location]["distance"]:
+                                max_location = index
+                            index = index + 1
+
+                        if distance < closest[max_location]["distance"]:
+                            del closest[max_location]
+                            closest.append({"station_id": station["station_id"], "distance": distance,
+                                            "coordinates": station["coordinates"]})
+            else:
+                distance = self.get_distance(location, station["coordinates"])
+                if len(closest) < number_of_stations:
                     closest.append({"station_id": station["station_id"], "distance": distance,
                                     "coordinates": station["coordinates"]})
+                else:
+                    max_location = 0
+                    index = 0
+                    for close_station in closest:
+                        if close_station["distance"] > closest[max_location]["distance"]:
+                            max_location = index
+                        index = index + 1
+
+                    if distance < closest[max_location]["distance"]:
+                        del closest[max_location]
+                        closest.append({"station_id": station["station_id"], "distance": distance,
+                                        "coordinates": station["coordinates"]})
 
         return closest
 
     def get_distance(self, start, dest):
         # print start
-        # print dest
+        # print dest.
         return math.sqrt(((start["lat"] - dest["lat"]) ** 2 + (start["lng"] - dest["lng"]) ** 2))
 
     def print_stations(self):
         for station in self.CVST.stations:
             print "station {0}: ({1},{2})".format(station["station_id"],
-                                                  station["coordinates"]["lat"], station["coordinates"]["lng"])
+                    station["coordinates"]["lat"], station["coordinates"]["lng"])
 
     def sort_stations(self, stations_list):
         pass

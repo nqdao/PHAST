@@ -25,10 +25,10 @@ class CVSTInterface:
         if type(station_id_list) == list:
             for station_id in station_id_list:
                 command = "{0}/{1}".format(self.BASE_URL, station_id)
-                requested_stations.append(self.__execute_command(command).json()[0])
+                requested_stations.append(self.__execute_command(command).json())
         else:
             command = "{0}/{1}".format(self.BASE_URL, station_id_list)
-            requested_stations.append(self.__execute_command(command).json()[0])
+            requested_stations.append(self.__execute_command(command).json())
             
         return requested_stations
 
