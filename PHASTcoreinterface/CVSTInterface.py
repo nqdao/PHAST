@@ -20,10 +20,16 @@ class CVSTInterface:
         return requests.get(command,auth=HTTPBasicAuth(self.user, self.password))        
 
     def get_current_station_data(self, station_id_list):
-        requested_stations = {}
-        for station_id in station_id_list:
-            command = "{0}/{1}".format(self.BASE_URL, station_id)
-            requested_stations["{}".format(station_id)] = self.__execute_command(command).json()[0]
+        requested_stations = []
+
+        if type(station_id_list) == list:
+            for station_id in station_id_list:
+                command = "{0}/{1}".format(self.BASE_URL, station_id)
+                requested_stations.append(self.__execute_command(command).json()[0])
+        else:
+            command = "{0}/{1}".format(self.BASE_URL, station_id_list)
+            requested_stations.append(self.__execute_command(command).json()[0])
+            
         return requested_stations
 
     def get_all_current_stations(self):
