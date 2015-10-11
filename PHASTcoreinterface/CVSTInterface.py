@@ -61,7 +61,7 @@ class CVSTInterface:
         else:
             # print "{0}/{1}?timestamp={2}".format(self.BASE_URL,station_id_list,end_time)
             stations_to_return.append(requests.get("{0}/{1}?starttime={2}&endtime={3}".format(
-                self.BASE_URL,station_id, start_time,end_time)).json())
+                self.BASE_URL,station_id_list, start_time,end_time)).json())
 
         # print stations_to_return
         return stations_to_return
