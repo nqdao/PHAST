@@ -5,21 +5,30 @@ import requests
 import json
 import os.path
 import datetime
+from requests.auth import HTTPBasicAuth
 
 
 class CVSTInterface:
 
     BASE_URL = "http://portal.cvst.ca/api/0.1/bixi"
 
+    def __init__(self):
+        self.user = "design_camp"
+        self.password = "cvst_2015"
+
+    def __execute_command(self,command):
+        return requests.get(command,auth=HTTPBasicAuth(self.user, self.password))        
+
     def get_current_station_data(self, station_id_list):
         requested_stations = {}
         for station_id in station_id_list:
-            requested_stations["{}".format(station_id)] = requests.get("{0}/{1}".format(
-                self.BASE_URL, station_id)).json()[0]
+            command = "{0}/{1}".format(self.BASE_URL, station_id)
+            requested_stations["{}".format(station_id)] = self.__execute_command(command).json()[0]
         return requested_stations
 
     def get_all_current_stations(self):
-        return requests.get("{}".format(self.BASE_URL)).json()
+        command = self.BASE_URL
+        return __execute_command(command).json()
 
     def get_maximum_docks(self, station_id):
         dt = datetime.datetime.now()
@@ -56,12 +65,14 @@ class CVSTInterface:
 
         if type(station_id_list) == list:
             for station_id in station_id_list:
-                stations_to_return.append(requests.get("{0}/{1}?starttime={2}&endtime={3}".format(
-                    self.BASE_URL,station_id, start_time,end_time)).json())
+                command = "{0}/{1}?starttime={2}&endtime={3}".format(self.BASE_URL,station_id, 
+                    start_time,end_time)
+                stations_to_return.append(self.__execute_command(command).json())
         else:
             # print "{0}/{1}?timestamp={2}".format(self.BASE_URL,station_id_list,end_time)
-            stations_to_return.append(requests.get("{0}/{1}?starttime={2}&endtime={3}".format(
-                self.BASE_URL,station_id_list, start_time,end_time)).json())
+            command = "{0}/{1}?starttime={2}&endtime={3}".format(self.BASE_URL,station_id_list, 
+                start_time,end_time)
+            stations_to_return.append(self.__execute_command(command).json())
 
         # print stations_to_return
         return stations_to_return
