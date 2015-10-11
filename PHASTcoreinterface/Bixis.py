@@ -19,13 +19,13 @@ class Bixis:
         # already exists.
         # should the db file not exist, build it.
 
-        # if os.path.isfile(self.STATIONS_FILE):
-        with open(self.STATIONS_FILE) as data_file:
-            self.stations = json.load(data_file)
-            # else:
-            # 	self.populate_station_locations()
-            # 	with open(self.STATIONS_FILE,'w') as outfile:
-            # 		json.dump(self.stations, outfile, indent=4, sort_keys=True)
+        if os.path.isfile(self.STATIONS_FILE):
+            with open(self.STATIONS_FILE) as data_file:
+                self.stations = json.load(data_file)
+        else:
+            self.populate_station_locations()
+            with open(self.STATIONS_FILE,'w') as outfile:
+        		json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):
         temp_stations = self.CVST.get_all_current_stations()
@@ -81,19 +81,32 @@ class Bixis:
     def sort_stations(self, stations_list):
         pass
 
-    # def main():
-    # 	bixis = BixiRoutes()
-    # 	closest = bixis.get_closest(UofT_location,7)
-    # 	for station in closest:
-    # 		print "station {0}:\n--------------\nlocation: ({1},{2})\ndistance: {3}\n".format(
-    # 			station["id"],station["coordinates"][0], station["coordinates"][1],station["distance"])
+    def calculate_confidence(self, station, time):
+        current_empty_docks = station["empty_docks"]
 
-    # if __name__ == "__main__":
-    # 	main()
+
+        return
+
+    @staticmethod
+    def poisson(actual, mean):
+        p = math.exp(-mean)
+        for i in xrange(actual):
+            p *= mean
+            p /= i+1
+        return p
+
+# def main():
+# 	bixis = BixiRoutes()
+# 	closest = bixis.get_closest(UofT_location,7)
+# 	for station in closest:
+# 		print "station {0}:\n--------------\nlocation: ({1},{2})\ndistance: {3}\n".format(
+# 			station["id"],station["coordinates"][0], station["coordinates"][1],station["distance"])
+
+# if __name__ == "__main__":
+# 	main()
 
 if __name__ == '__main__':
     bixis = Bixis()
-    bixis.populate_station_locations()
     while True:
         updated_station_list = bixis.CVST.get_all_current_stations()
         for updated_station in updated_station_list:
