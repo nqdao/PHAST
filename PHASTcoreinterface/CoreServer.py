@@ -39,26 +39,48 @@ class CoreServer:
 
     def run(self):
 
-        while True:            
+        while True:
+        """ either new user:    {
+                                    "action":"new", 
+                                    "details":  
+                                                {
+                                                    "location": {
+                                                                    "origin":<origin>, 
+                                                                    "destionation": <destination>
+                                                                }
+                                                }
+                                }  
+
+            or update:          {
+                                    "action": "update",
+                                    "details":  
+                                                {
+                                                    "user": <UUID>,
+                                                    "location": <location>
+                                                }
+                                }  
+        """       
 
             client_connection, client_address = self.listen_socket.accept()
-            request = json.loads(client_connection.recv(1024))
-            print request
+            received_json = json.loads(client_connection.recv(1024))
+            result = self.process_incoming(received_json)
             # print request
             # data = load_jason_file('testData.json')
             # http_response = """\
             # HTTP/1.1 200 OK
             # Hello, World!    """
             # http_response = json.dumps(data)
-            self.new_routing(request, uuid.uuid4())
-            client_connection.sendall("thanks")
+            client_connection.sendall(result)
             client_connection.close()
 
+    def process_incoming(self,received_json):
 
-    def new_routing(self,locations,user_id):
+
+    def new_routing(self,locations):        
+        user_id = uuid.uuid4()
         thread = RoutingThread.RoutingThread(user_id,locations)
         thread.start()
-
+        return user_id
 
 def main():
     test = CoreServer()
