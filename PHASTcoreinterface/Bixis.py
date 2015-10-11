@@ -81,11 +81,32 @@ class Bixis:
     def sort_stations(self, stations_list):
         pass
 
-    def calculate_confidence(self, station, time):
-        current_empty_docks = station["empty_docks"]
+    def calculate_confidence(self, station_id, arrival_time):
+        #arrival_time is in UNIX time
+        seconds_in_day = 86400
+        update_interval = 300
+        start_interval = arrival_time - 120
+        end_interval = arrival_time + 180
+        historical_data = self.CVST.get_current_station_data(station_id)
+        print len(historical_data)
+        empty_docks_list = []
+        for days in range(1, 11):
+            print days
+            for entry in historical_data:
+                print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
+                if (start_interval - days*seconds_in_day) < entry["timestamp"] < (end_interval - days*seconds_in_day):
+                    empty_docks_list.append(entry["empty_docks"])
+                    break
+                elif entry["timestamp"] == (end_interval - days*seconds_in_day) or \
+                                        entry["timestamp"] - update_interval == (start_interval - days*seconds_in_day):
+                    empty_docks_list.append(entry["empty_docks"])
+                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
+                    break
 
-        return
+        #confidence = 1 - self.poisson(0, self.mean(empty_docks_list))
+        confidence = 0
+        return confidence
 
     @staticmethod
     def poisson(actual, mean):
@@ -94,6 +115,10 @@ class Bixis:
             p *= mean
             p /= i+1
         return p
+
+    @staticmethod
+    def mean(l):
+        return sum(l)/len(l)
 
 # def main():
 # 	bixis = BixiRoutes()
