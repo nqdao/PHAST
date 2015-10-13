@@ -29,7 +29,7 @@ class CVSTInterface:
         else:
             command = "{0}/{1}".format(self.BASE_URL, station_id_list)
             requested_stations.append(self.__execute_command(command).json())
-            
+
         return requested_stations
 
     def get_all_current_stations(self):
@@ -71,12 +71,12 @@ class CVSTInterface:
 
         if type(station_id_list) == list:
             for station_id in station_id_list:
-                command = "{0}/{1}?starttime={2}&endtime={3}".format(self.BASE_URL,station_id, 
+                command = "{0}/{1}?starttime={2}&endtime={3}".format(self.BASE_URL,station_id,
                     start_time,end_time)
                 stations_to_return.append(self.__execute_command(command).json())
         else:
             # print "{0}/{1}?timestamp={2}".format(self.BASE_URL,station_id_list,end_time)
-            command = "{0}/{1}?starttime={2}&endtime={3}".format(self.BASE_URL,station_id_list, 
+            command = "{0}/{1}?starttime={2}&endtime={3}".format(self.BASE_URL,station_id_list,
                 start_time,end_time)
             stations_to_return.append(self.__execute_command(command).json())
 
