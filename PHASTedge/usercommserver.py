@@ -1,87 +1,44 @@
-__author__ = 'Nhat-Quang'
+__author__ = 'Daniel'
 import socket
 import json
-from pprint import pprint
-import uuid
-import RoutingThread
 
-HOST, PORT = '', 6633
-
-"""
-    The CoreServer class which will continually listen for information
-    being sent by the client on the EDGE and handle the creation of Routing.py threads
-    for the determination of routes for users
-
-    inputs: 
-    - user's location
-    - user's destination
-
-    outputs: 
-    - UUID generated for user
-    - routing thread spawned with above inputs
-
-    conituing:
-    - routing thread saved with UUID
-    - passing of location updates from user to associated routing thread
-    - removal of association upon thread completion
-"""
+HOST, PORT, CORE = '', 6633, '10.12.8.3'
 
 class CoreServer:
-
+	 	 
+	  	
     def __init__(self):
         self.listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.listen_socket.bind((HOST, PORT))
         self.listen_socket.listen(1)
         print 'Serving HTTP on port {}...'.format(PORT)
-
         self.run()
 
     def run(self):
 
-        while True:
-        """ either new user:    {
-                                    "action":"new", 
-                                    "details":  
-                                                {
-                                                    "location": {
-                                                                    "origin":<origin>, 
-                                                                    "destionation": <destination>
-                                                                }
-                                                }
-                                }  
-
-            or update:          {
-                                    "action": "update",
-                                    "details":  
-                                                {
-                                                    "user": <UUID>,
-                                                    "location": <location>
-                                                }
-                                }  
-        """       
-
+        while True:        
             client_connection, client_address = self.listen_socket.accept()
             received_json = json.loads(client_connection.recv(1024))
             result = self.process_incoming(received_json)
-            # print request
-            # data = load_jason_file('testData.json')
-            # http_response = """\
-            # HTTP/1.1 200 OK
-            # Hello, World!    """
-            # http_response = json.dumps(data)
+            
             client_connection.sendall(result)
             client_connection.close()
 
     def process_incoming(self,received_json):
+		""" Only processes  
+				Incoming from user:  Process request for new trip	
+						submit trip details to core, reply to user with route options
+		""""
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.connect((CORE, PORT))	
 
+		s.sendall(json.dumps(received_json))
 
-    def new_routing(self,locations):        
-        user_id = uuid.uuid4()
-        thread = RoutingThread.RoutingThread(user_id,locations)
-        thread.start()
-        return user_id
-
+		datain = s.recv(1024)
+		s.close()
+		return datain
+		
 def main():
     test = CoreServer()
 
