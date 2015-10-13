@@ -29,6 +29,9 @@ HOST, PORT = '', 6633
 class CoreServer:
 
     def __init__(self):
+
+        self.outgoing_messages = []
+
         self.listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.listen_socket.bind((HOST, PORT))
@@ -36,6 +39,7 @@ class CoreServer:
         print 'Serving HTTP on port {}...'.format(PORT)
 
         self.run()
+
 
     def run(self):
 
@@ -74,13 +78,24 @@ class CoreServer:
             client_connection.close()
 
     def process_incoming(self,received_json):
-
+        if received_json["action"] == "new":
+            return new_routing(received_json["details"])
+        else if received_json["action"] == "update":
+            return update_routing(received_json["details"])
+        else:
+            print "Unknown action"
 
     def new_routing(self,locations):        
         user_id = uuid.uuid4()
-        thread = RoutingThread.RoutingThread(user_id,locations)
+        thread = RoutingThread.RoutingThread(user_id,locations,add_outgoing_message)
         thread.start()
         return user_id
+
+    def update_routing(self,details):
+        return "updated"
+
+    def add_outgoing_message(self,message):
+        self.outgoing_messages.append(message)
 
 def main():
     test = CoreServer()
