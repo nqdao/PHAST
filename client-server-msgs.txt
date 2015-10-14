@@ -35,14 +35,23 @@ User: (only communicates with User Comm)
 	"action": "routes",
 	"details": {
 		"user_id" : "",
-		"routes" :					 
-			[{	
-				"summary" : "",		
-				"distance": "",
-				"duration": "",
-				"confidence": "",
-				"steps" : [...],
-			}, ...]		
+		"routes" : {
+			"bixi":			 
+				[{	
+					"summary" : "",		
+					"distance": "",
+					"duration": "",
+					"confidence": "",
+					"steps" : [...],
+				}, ...]	,
+			"bus":
+				[{
+					"summary" : "",
+					"distance": "",
+					"duration": "",
+					"steps" : 	"",
+				}]	
+		}
 	}
 }
 
@@ -65,7 +74,7 @@ User: (only communicates with User Comm)
 	"details": {
 		"user_id" : "",
 		"route" :{	
-			"summary" : "",		
+			"summary" : "",	
 			"distance": "",
 			"duration": "",
 			"confidence": "",

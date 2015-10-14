@@ -31,7 +31,7 @@ class CoreServer:
     CLIENT_FILE = "coreclient.json"
 
     def __init__(self):
-        self.routing_processes = [None] * 15
+        self.routing_objects = [None] * 15
         self.outgoing_messages = []
         self.num_users = 0
 
@@ -105,18 +105,21 @@ class CoreServer:
 
     def new_routing(self,details):        
         user_id = self.new_user_id()
-        self.routing_processes[user_id] = Routing.Routing(user_id,self.STATIONS_FILE,details,self.CLIENT_FILE)
-        return {"action": "routes", "details":{"user_id": user_id, "routes": self.routing_processes[user_id].routes}}
+        # create a new object to perform routing and store it
+        self.routing_objects[user_id] = Routing.Routing(user_id,self.STATIONS_FILE,self.CLIENT_FILE,details["origin"], details["destination"])
+        return {"action": "routes", "details":{"user_id": user_id, "routes": self.routing_objects[user_id].routes}}
 
     def station_selection(self,details):
-        self.routing_processes[details["user_id"]].station_selection(details["station_id"])
+        self.routing_objects[details["user_id"]].station_selection(details["selection"])
+        return {"action":"ack", "details":details["user_id"]}
 
     # def new_location(self,details):
-    #     self.routing_processes[details["user_id"]].station_selection(details["station_id"])
+    #     self.routing_objects[details["user_id"]].station_selection(details["station_id"])
 
     def shutdown_process(self, details):
-        self.routing_processes[details["user_id"]].finished = True
-        self.routing_processes[details["user_id"]] = None
+        self.routing_objects[details["user_id"]].finished = True
+        self.routing_objects[details["user_id"]] = None
+        return {"action":"ack", "details":details["user_id"]}
 
     def add_outgoing_message(self,message):
         self.outgoing_messages.append(message)
