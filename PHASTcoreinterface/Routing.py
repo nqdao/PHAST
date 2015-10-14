@@ -33,6 +33,7 @@ class Routing:
         self.origin = self.convert_string_to_geocode(origin)
         self.destination = self.convert_string_to_geocode(destination)
         self.routes = self.get_routes()
+        self.dest_stations = []
 
         # 
         # "routes" :                   
@@ -131,6 +132,8 @@ class Routing:
                             S_D_routes["bixi"].append({"summary":second_leg["route"]["summary"],"distance": total_distance,
                                 "duration":total_time, "confidence": confidence, "steps": combined_steps, "destination_station": first_leg["id"]})
 
+                            self.dest_stations.append(third_leg["id"])
+
             # finally, get the bus route
             S_D_routes["bus"] = self.gmaps.get_directions(self.origin,self.destination,'transit')[0]
 
@@ -207,11 +210,9 @@ class Routing:
         # the selection of a station to end at should spawn a thread that will monitor the stations
         # json file and see if that station goes to 0 empty docks
         if type(selection) is int:
-            self.station_id = selection
-        elif type(selection) is str:
-            self.station_id = self.routes["bixi"][selection]["destination_station"]
+            self.station_id = self.dest_stations[selection]
         else:
-            print "error, expecting int or string"
+            print "error, expecting int"
             sys.exit(1)
 
         self.file_check_thread = CheckFileThread.CheckFileThread(self.check_file)
@@ -231,7 +232,7 @@ class Routing:
                 message = {"action": "new_route", "details":{"user_id":self.user_id, "route":self.routes}}
                 self.send_message(json.dumps(message))
                 # restart the file checking process
-                self.station_selection(self.routes["bixi"][0]["stations"]["end"])
+                self.station_selection = self.routes["bixi"][0]["stations"]["end"]
             else:
                 print "expecting details key to contain lng and lat"
                 sys.exit(1)

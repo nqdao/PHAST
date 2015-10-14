@@ -38,8 +38,7 @@ User: (only communicates with User Comm)
 		"routes" : {
 			"bixi":			 
 				[{	
-					"summary" : "",
-					"destination_station": "",		
+					"summary" : "",		
 					"distance": "",
 					"duration": "",
 					"confidence": "",
@@ -75,8 +74,7 @@ User: (only communicates with User Comm)
 	"details": {
 		"user_id" : "",
 		"route" :{	
-			"summary" : "",
-			"destination_station": "",		
+			"summary" : "",	
 			"distance": "",
 			"duration": "",
 			"confidence": "",
