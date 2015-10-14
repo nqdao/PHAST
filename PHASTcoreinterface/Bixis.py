@@ -4,8 +4,7 @@
 import CVSTInterface
 import os, math, json
 import time
-from pprint import pprint
-
+from datetime import datetime
 
 class Bixis:
 
@@ -31,7 +30,7 @@ class Bixis:
         for station in temp_stations:
             # determine lat and long (note that this will only work for locations
             # in both the north and western hemispheres)
-            print "working on station {}".format(station["station_id"])
+            print "working on station {}".format(station["id"])
             if station["coordinates"][0] < 0:
                 lat = station["coordinates"][1]
                 lng = station["coordinates"][0]
@@ -42,7 +41,7 @@ class Bixis:
             del station["coordinates"]
             station["coordinates"] = {"lat": lat, "lng": lng}
 
-            station["max_docks"] = self.CVST.get_maximum_docks(station["station_id"])
+            station["max_docks"] = self.CVST.get_maximum_docks(station["id"])
             self.stations.append(station)
 
     def get_closest_stations(self, location, stations_list, 
@@ -57,7 +56,7 @@ class Bixis:
                 if station["max_docks"] - station["empty_docks"] >= least:
                     distance = self.get_distance(location, station["coordinates"])
                     if len(closest) < number_of_stations:
-                        closest.append({"station_id": station["station_id"], "distance": distance,
+                        closest.append({"id": station["id"], "distance": distance,
                                         "coordinates": station["coordinates"]})
                     else:
                         max_location = 0
@@ -69,14 +68,14 @@ class Bixis:
 
                         if distance < closest[max_location]["distance"]:
                             del closest[max_location]
-                            closest.append({"station_id": station["station_id"], "distance": distance,
+                            closest.append({"id": station["id"], "distance": distance,
                                             "coordinates": station["coordinates"]})
 
             elif least_test == "docks":
                 if station["empty_docks"] >= least:
                     distance = self.get_distance(location, station["coordinates"])
                     if len(closest) < number_of_stations:
-                        closest.append({"station_id": station["station_id"], "distance": distance,
+                        closest.append({"id": station["id"], "distance": distance,
                                         "coordinates": station["coordinates"]})
                     else:
                         max_location = 0
@@ -88,12 +87,12 @@ class Bixis:
 
                         if distance < closest[max_location]["distance"]:
                             del closest[max_location]
-                            closest.append({"station_id": station["station_id"], "distance": distance,
+                            closest.append({"id": station["id"], "distance": distance,
                                             "coordinates": station["coordinates"]})
             else:
                 distance = self.get_distance(location, station["coordinates"])
                 if len(closest) < number_of_stations:
-                    closest.append({"station_id": station["station_id"], "distance": distance,
+                    closest.append({"id": station["id"], "distance": distance,
                                     "coordinates": station["coordinates"]})
                 else:
                     max_location = 0
@@ -105,7 +104,7 @@ class Bixis:
 
                     if distance < closest[max_location]["distance"]:
                         del closest[max_location]
-                        closest.append({"station_id": station["station_id"], "distance": distance,
+                        closest.append({"id": station["id"], "distance": distance,
                                         "coordinates": station["coordinates"]})
 
         return closest
@@ -117,42 +116,39 @@ class Bixis:
 
     def print_stations(self):
         for station in self.CVST.stations:
-            print "station {0}: ({1},{2})".format(station["station_id"],
+            print "station {0}: ({1},{2})".format(station["id"],
                     station["coordinates"]["lat"], station["coordinates"]["lng"])
 
     def sort_stations(self, stations_list):
         pass
 
-    def calculate_confidence(self, station_id, arrival_time):
+    def calculate_confidence(self, id, arrival_time):
         #arrival_time is in UNIX time
         seconds_in_day = 86400
-        update_interval = 300
         start_interval = arrival_time - 120
         end_interval = arrival_time + 180
-        historical_data = (self.CVST.get_current_station_data(station_id))[0]
+        historical_data = (self.CVST.get_current_station_data(id))[0]
         print len(historical_data)
+        weekday = True
+        if not datetime.fromtimestamp(arrival_time).weekday() < 5:
+            weekday = False
         empty_docks_list = []
-        for days in range(1, 11):
+        for days in range(1, 8):
             print days
             for entry in historical_data:
+                if (weekday and datetime.fromtimestamp(entry["timestamp"]).weekday() < 5)\
+                        or (not weekday and datetime.fromtimestamp(entry["timestamp"]).weekday() >= 5):
+                    if (start_interval - days*seconds_in_day) < entry["timestamp"] < (end_interval - days*seconds_in_day):
+                        empty_docks_list.append(entry["empty_docks"])
+                        print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
-                if (start_interval - days*seconds_in_day) < entry["timestamp"] < (end_interval - days*seconds_in_day):
-                    empty_docks_list.append(entry["empty_docks"])
-                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
+                    elif entry["timestamp"] == (end_interval - days*seconds_in_day):
+                        empty_docks_list.append(entry["empty_docks"])
+                        print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
-                elif (start_interval - days*seconds_in_day) <= entry["timestamp"] < (end_interval - days*seconds_in_day):
-                    empty_docks_list.append(entry["empty_docks"])
-                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
-
-                elif (start_interval - days*seconds_in_day) < entry["timestamp"] <= (end_interval - days*seconds_in_day):
-                    empty_docks_list.append(entry["empty_docks"])
-                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
-
-                # elif entry["timestamp"] == (end_interval - days*seconds_in_day) or \
-                #                         entry["timestamp"] - update_interval == (start_interval - days*seconds_in_day):
-                #     empty_docks_list.append(entry["empty_docks"])
-                #     print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
-                #     break
+                    elif (start_interval - days*seconds_in_day) == entry["timestamp"]:
+                        empty_docks_list.append(entry["empty_docks"])
+                        print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
         print len(empty_docks_list)
         confidence = 1 - self.poisson(0, self.mean(empty_docks_list))
@@ -186,8 +182,8 @@ if __name__ == '__main__':
         updated_station_list = bixis.CVST.get_all_current_stations()
         for updated_station in updated_station_list:
             for station in bixis.stations:
-                if updated_station["station_id"] == station["station_id"]:
-                    print "updated_station ", updated_station["station_id"], "station", station["station_id"]
+                if updated_station["id"] == station["id"]:
+                    print "updated_station ", updated_station["id"], "station", station["id"]
                     for key in updated_station:
                         if key == "coordinates":
                             station["coordinates"]["lat"] = updated_station["coordinates"][1]
