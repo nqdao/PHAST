@@ -10,20 +10,25 @@ class Bixis:
 
     def __init__(self, stations_file):
         self.routes = {}
+        self.stations_file = stations_file
         self.CVST = CVSTInterface.CVSTInterface()
         self.stations = []
 
         # open up and store the stations if the db file containing their general information
         # already exists.
         # should the db file not exist, build it.
+        self.read_stations_file()
         
-        if os.path.isfile(stations_file):
+
+    def read_stations_file(self):
+        self.stations = []
+        if os.path.isfile(stations_file):            
             with open(stations_file) as data_file:
                 self.stations = json.load(data_file)
         else:
-        	self.populate_station_locations()
-        	with open(stations_file,'w') as outfile:
-        		json.dump(self.stations, outfile, indent=4, sort_keys=True)
+            self.populate_station_locations()
+            with open(stations_file,'w') as outfile:
+                json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):
         temp_stations = self.CVST.get_all_current_stations()
@@ -121,6 +126,11 @@ class Bixis:
 
     def sort_stations(self, stations_list):
         pass
+
+    def is_empty(self,station_id):
+        for station in self.stations:
+            if station["id"] == station_id:
+                return (station["empty_docks"] == 0)
 
     def calculate_confidence(self, id, arrival_time):
         #arrival_time is in UNIX time
