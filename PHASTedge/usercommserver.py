@@ -43,7 +43,7 @@ class UserCommServer:
 				for option in new_options:
 					del option['distance']
 					del option['steps']
-				json_resp['details'] = { 'user_id' : user_id, 'routes': new_options }#??
+				json_resp['details'] = { 'user_id' : user_id, 'routes': new_options }
 			#else invalid	
 
 		elif received_json['action'] == 'selection':
@@ -52,8 +52,7 @@ class UserCommServer:
 			json_resp = {}
 			json_resp['action'] = 'route_info'
 			rte_selected = userlist[user_id].routes[details['selection']]
-			steps = rte_selected['steps']		
-			json_resp['details'] = 	steps
+			json_resp['details'] = { 'user_id' : user_id, 'route': rte_selected }
 			last_bike_step = steps[steps.length-1]
 			userlist[user_id].dest_bixi = last_bike_step['end_location']
 
@@ -66,7 +65,7 @@ class UserCommServer:
 				reply = coreComm(json_resp)
 			elif send_new_route:
 				json_resp['action'] = 'new_route'
-				json_resp['details'] = userlist[user_id].new_route
+				json_resp['details'] = { 'user_id' : user_id, 'newroute': userlist[user_id].new_route }
 				userlist[user_id].send_new_route = False				
 			else:
 				json_resp['action']  = 'ack'
@@ -80,7 +79,7 @@ class UserCommServer:
 		elif received_json['action'] == 'get_location':
 			#send location to core
 			json_resp['action'] = 'location'
-			json_resp['details'] = userlist[user_id].location
+			json_resp['details'] = { 'user_id' : user_id, 'location': userlist[user_id].location }
 		#else ack or invalid 
 
 		return json_resp
