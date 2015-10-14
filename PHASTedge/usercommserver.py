@@ -4,10 +4,13 @@ import json
 
 HOST, PORT, CORE = '', 6633, '10.12.8.3'
 
-class CoreServer:
+class UserCommServer:
 	 	 
+	
+    routes, location, new_route, send_new_route = '','', False
 	  	
     def __init__(self):
+		  send_new_route
         self.listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.listen_socket.bind((HOST, PORT))
@@ -25,28 +28,45 @@ class CoreServer:
             client_connection.sendall(result)
             client_connection.close()
 
-    def process_incoming(self,received_json):
-		""" Only processes  
-				Incoming from user:  Process request for new trip	
-						submit trip details to core, reply to user with route options
-		""""
+   def process_incoming(self,received_json):
+		json_resp	
+		parsed_json = json.loads(received_json)
+		if parsed_json['action'] == 'new_trip':
+			#forward to core, await reply, return routes metadata
+			routes = coreComm(received_json)
+			parse_json = json.loads(routes)
+			response = {}
+			response['action'] = 'routes'
+			if parsed_json['action'] == 'routes':
+				options = parsed_json['options']
+				for option in options:
+					
+			#else invalid	
+		elif parsed_json['action'] == 'selection':
+			#forward to core, await ack, send route_info to user
+			json_resp = coreComm(received_json)
+		elif parsed_json['action'] == 'location':
+			#store, send ack to user
+
+		elif parsed_json['action'] == 'new_route':
+			#store new route details, forward to user at next location update
+
+		elif parsed_json['action'] == 'get_location':
+			#send location to core
+		#else ack or invalid 
+		return json_resp
+	
+	def coreComm(self, message)
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((CORE, PORT))	
-
-		s.sendall(json.dumps(received_json))
-
+		s.sendall(json.dumps(message))
 		datain = s.recv(1024)
 		s.close()
-		return datain
+		return datain		
 		
 def main():
-    test = CoreServer()
+    test = UserCommServer()
 
-
-def load_jason_file(file_name):
-    with open(file_name) as data_file:
-            data = json.load(data_file)
-    return data
 
 
 if __name__ == '__main__':

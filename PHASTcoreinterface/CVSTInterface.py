@@ -16,8 +16,8 @@ class CVSTInterface:
         self.user = "design_camp"
         self.password = "cvst_2015"
 
-    def __execute_command(self,command):
-        return requests.get(command,auth=HTTPBasicAuth(self.user, self.password))        
+    def __execute_command(self, command):
+        return requests.get(command, auth=HTTPBasicAuth(self.user, self.password))
 
     def get_current_station_data(self, station_id_list):
         requested_stations = []

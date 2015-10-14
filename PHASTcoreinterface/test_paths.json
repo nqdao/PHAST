@@ -1,10 +1,11 @@
 " 'ideal' format for details of route(s)"
 "  Not sure what info we really want to present to the user when making a selection"
 {	
-	"action": "route_list"| "new_route",
+	"action": "routes"| "route_info" | "new_route",
 	"options": 
 		[ 
-			{			
+			{	
+				"summary" : "",		
 				"distance": "",
 				"duration": "",
 				"confidence": "",

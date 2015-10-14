@@ -1,0 +1,48 @@
+User: (only communicates with User Comm)
+	Send:
+		new_trip
+		selection
+		location
+	Receive:
+		routes
+		route_info
+		new_route
+		ack
+		
+User Comm:
+	Send:
+		To User:
+			routes
+			route_info
+			ack
+			new_route
+			done
+		To Core:
+			new_trip
+			selection
+			location
+			ack
+			done
+	Receive:
+		From User:
+			new_trip
+			selection
+			location
+		From Core:
+			routes
+			get_location
+			new_route
+			ack
+			
+Core: (only communicates with User Comm)
+	Send:
+		routes
+		ack
+		get_location
+		new_route
+	Receives:
+		location
+		new_trip
+		selection
+		ack
+		done

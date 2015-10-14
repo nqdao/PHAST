@@ -5,17 +5,10 @@ import sys
 
 # USAGE: python client.py <hostname> <port> <JSON>
 
-HOST = str(sys.argv[1])    # The remote host
-PORT = int(sys.argv[2])    # The same port as used by the server
+HOST = str(sys.argv[1])    # The User Comm host
+PORT = int(sys.argv[2])    # The User Comm port
 
-""" The trip details as 
-		{ 	"action": "new|select",
-			"request" "origin":"",
-			"destination":"", 
-			"selection":""
-		}
-"""
-dataout = str(sys.argv[3])		
+dataout = str(sys.argv[3])	#JSON string containing the user command
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))	
@@ -24,13 +17,21 @@ s.sendall(json.dumps(dataout))
 
 datain = s.recv(1024)
 s.close()
+
 parsed_json = json.loads(datain)
-if parsed_json['action'] == 'route_list':
-print "Route No. | Confidence | Steps " #to be formatted pretty later, possibly other fields
-for option in options:
-	opt_json = json.loads(option)
-	steps = opt_json['steps']	    	
-	print "%d | %d" % (opt_num, opt_json['confidence'])    	    	  
-	for step in steps:
-		details = json.loads(step)
-		#parsed details of the step.. content tbd		
+
+if parsed_json['action'] == 'routes':
+	options = parsed_json['options']
+	print "Route No. | Name | Time | Confidence" #to be formatted pretty later, possibly other fields
+	for option in options:
+		opt_json = json.loads(option)
+		steps = opt_json['steps']	    	
+		print "%d | %s | %s | %s" % (opt_num, opt_json['summary'], opt_json['duration'], opt_json['confidence'])    	    	  
+		
+elif parsed_json['action'] == 'route_info':
+	#parsed details of the steps.. content tbd	
+
+elif parsed_json['action'] == 'new_route':
+	#parsed details of the steps.. content tbd	
+# else assume ack or invalid and ignore
+	
