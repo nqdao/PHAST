@@ -2,8 +2,7 @@ __author__ = 'Nhat-Quang'
 import socket
 import json
 from pprint import pprint
-import uuid
-import RoutingThread
+import Routing
 
 HOST, PORT = '', 6633
 
@@ -28,9 +27,13 @@ HOST, PORT = '', 6633
 
 class CoreServer:
 
+    STATIONS_FILE = "stations.json"
+    CLIENT_FILE = "coreclient.json"
+
     def __init__(self):
 
         self.outgoing_messages = []
+        self.num_users = 0
 
         self.listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -77,6 +80,7 @@ class CoreServer:
             client_connection.sendall(result)
             client_connection.close()
 
+
     def process_incoming(self,received_json):
         if received_json["action"] == "new":
             return new_routing(received_json["details"])
@@ -86,9 +90,8 @@ class CoreServer:
             print "Unknown action"
 
     def new_routing(self,locations):        
-        user_id = uuid.uuid4()
-        thread = RoutingThread.RoutingThread(user_id,locations,add_outgoing_message)
-        thread.start()
+        user_id = self.new_user_id()
+        processor = Routing.Routing(user_id,self.STATIONS_FILE,locations,self.CLIENT_FILE)
         return user_id
 
     def update_routing(self,details):
@@ -96,6 +99,10 @@ class CoreServer:
 
     def add_outgoing_message(self,message):
         self.outgoing_messages.append(message)
+
+    def new_user_id(self):
+        self.num_users = self.num_users + 1
+        return self.num_users - 1
 
 def main():
     test = CoreServer()
