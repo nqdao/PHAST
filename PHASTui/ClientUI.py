@@ -3,15 +3,21 @@ __author__ = 'Nhat-Quang'
 import wx, os
 import wx.html2
 import urllib
+import json, socket, sys
 
 
 class Gui(wx.Frame):
+    HOST, PORT = "142.150.208.139", 6633
+    ORIGIN = "University of Toronto"
+    LOCATION_LIST = [(0, 0), (1, 1), (2, 2), (10, 10)]
 
     def __init__(self, parent, title):
         super(Gui, self).__init__(parent, title=title,
             size=(1000, 750))
-        self.server_host = "142.150.208.139"
-        self.server_port = 6633
+
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
         panel = wx.Panel(self)
         sizer = wx.BoxSizer(wx.VERTICAL)
 
@@ -40,8 +46,16 @@ class Gui(wx.Frame):
         self.Show()
 
     def compute_route(self, event):
-        text = self.location_box.GetValue()
-        print text
+        if self.location_box.IsEmpty():
+            wx.MessageBox('Empty Destination', 'Error', wx.OK | wx.ICON_ERROR)
+            return
+        destination = self.location_box.GetValue()
+        print destination
+        self.s.connect((self.HOST,self.PORT))
+        self.s.sendall(json.dumps(self.construct_new_trip_request(destination, origin)))
+        route_selections = json.loads(self.s.recv(1024))
+        #display and let user select route
+
         self.display_map()
 
     def display_map(self):
@@ -49,6 +63,31 @@ class Gui(wx.Frame):
             urllib.urlretrieve(self.url, self.img_file)
             self.img.SetBitmap(wx.Bitmap(self.img_file, wx.BITMAP_TYPE_ANY))
         self.img.Refresh()
+
+    def monitor_communication(self):
+        data_in = json.loads(self.s.recv(1024))
+        while(data_in['action'] == "done"):
+            self.s.sendall(json.dumps(self.construct_location_response()))
+            data_in = json.loads(self.s.recv(1024))
+
+        print json.dumps(data_in)
+        self.s.close()
+
+    @staticmethod
+    def construct_new_trip_request(self, destination, origin=ORIGIN):
+        data_out = {'action': "new_trip", 'details': {"user_id": 0, "origin": origin, "destination": destination}}
+        return data_out
+
+    @staticmethod
+    def construct_route_selection(self, routes, select):
+        data_out = {'action': "selection", 'details': {'user_id': 0, 'selection': select}}
+        return data_out
+
+    @staticmethod
+    def construct_location_response(self, i):
+        data_out = {'action': "location", 'details': {'user_id': 0, 'location': {'lat': self.LOCATION_LIST[i][0],
+                                                                                 'lng': self.LOCATION_LIST[i][1]}}}
+        return data_out
 
 if __name__ == '__main__':
     app = wx.App()
