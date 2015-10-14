@@ -53,8 +53,10 @@ class UserCommServer:
 			json_resp['action'] = 'route_info'
 			rte_selected = userlist[user_id].routes[details['selection']]
 			json_resp['details'] = { 'user_id' : user_id, 'route': rte_selected }
-			last_bike_step = steps[steps.length-1]
-			userlist[user_id].dest_bixi = last_bike_step['end_location']
+			if rte_selected['type'] == 'BIXI':
+				last_bike_step = steps[steps.length-1]
+				userlist[user_id].dest_bixi = last_bike_step['end_location']
+			#else we are done and Core should drop the user and re-use user ID
 
 		elif received_json['action'] == 'location':
 			json_resp = {}
