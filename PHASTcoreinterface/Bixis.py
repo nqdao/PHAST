@@ -4,8 +4,7 @@
 import CVSTInterface
 import os, math, json
 import time
-from pprint import pprint
-
+from datetime import datetime
 
 class Bixis:
 
@@ -130,28 +129,26 @@ class Bixis:
         end_interval = arrival_time + 180
         historical_data = (self.CVST.get_current_station_data(id))[0]
         print len(historical_data)
+        weekday = True
+        if not datetime.fromtimestamp(arrival_time).weekday() < 5:
+            weekday = False
         empty_docks_list = []
         for days in range(1, 8):
             print days
             for entry in historical_data:
+                if (weekday and datetime.fromtimestamp(entry["timestamp"]).weekday() < 5)\
+                        or (not weekday and datetime.fromtimestamp(entry["timestamp"]).weekday() >= 5):
+                    if (start_interval - days*seconds_in_day) < entry["timestamp"] < (end_interval - days*seconds_in_day):
+                        empty_docks_list.append(entry["empty_docks"])
+                        print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
-                if (start_interval - days*seconds_in_day) < entry["timestamp"] < (end_interval - days*seconds_in_day):
-                    empty_docks_list.append(entry["empty_docks"])
-                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
+                    elif entry["timestamp"] == (end_interval - days*seconds_in_day):
+                        empty_docks_list.append(entry["empty_docks"])
+                        print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
-                elif entry["timestamp"] == (end_interval - days*seconds_in_day):
-                    empty_docks_list.append(entry["empty_docks"])
-                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
-
-                elif (start_interval - days*seconds_in_day) == entry["timestamp"]:
-                    empty_docks_list.append(entry["empty_docks"])
-                    print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
-
-                # elif entry["timestamp"] == (end_interval - days*seconds_in_day) or \
-                #                         entry["timestamp"] - update_interval == (start_interval - days*seconds_in_day):
-                #     empty_docks_list.append(entry["empty_docks"])
-                #     print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
-                #     break
+                    elif (start_interval - days*seconds_in_day) == entry["timestamp"]:
+                        empty_docks_list.append(entry["empty_docks"])
+                        print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
         print len(empty_docks_list)
         confidence = 1 - self.poisson(0, self.mean(empty_docks_list))
