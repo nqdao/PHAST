@@ -3,6 +3,9 @@ import GoogleMapsInterface
 import json
 import os
 import time
+import sys
+import subprocess
+import CheckFileThread.py
 
 # test locations
 test_locs = {
@@ -15,63 +18,127 @@ test_locs = {
 
 class Routing:
 
-    def __init__(self, stations_file, start, destination):
+    EDGE = "10.2.8.3"
+    PORT = 6633
+
+    def __init__(self, user_id, stations_file, locations, client_filename):
         self.finished = False   # used for the file checking thread for exiting
+        self.station_id = -1
+        self.user_id = user_id
+        self.client_filename = client_filename  # coreclient.py
         self.bixis = Bixis.Bixis(stations_file)
         self.gmaps = GoogleMapsInterface.GoogleMapsInterface()
-        self.start = self.convert_string_to_geocode(start)
-        self.destination = self.convert_string_to_geocode(destination)
+        self.start = self.convert_string_to_geocode(locations["origin"])
+        self.destination = self.convert_string_to_geocode(locations["destination"])
         self.routes = self.get_routes()
 
-    def get_routes(self):
+    def get_routes(self, reroute=False, reroute_location=None):
         S_S1_routes = []
         S1_D1_routes = []
         D1_D_routes = []
         S_D_routes = {"bixi": []}
 
-        # get the 6 closest stations to origin with at least 2 bikes
-        origin_stations = self.viable_locations(self.start,6,least=3, least_test="bikes")
+        if not reroute:
+            # get the 6 closest stations to origin with at least 2 bikes
+            origin_stations = self.viable_locations(self.start,6,least=3, least_test="bikes")
 
-        # print origin_stations[1]
+            # print origin_stations[1]
 
-        # pare down to 3 closest origin stations to walking destination
-        origin_stations = self.bixis.get_closest_stations(self.destination,origin_stations,3)
+            # pare down to 3 closest origin stations to walking destination
+            origin_stations = self.bixis.get_closest_stations(self.destination,origin_stations,3)
 
-        # find the walking directions to each of the 3 origin stations
-        for station in origin_stations:
-            #get route
-            route = self.gmaps.get_directions(self.start,station["coordinates"],'walking')[0]
+            # find the walking directions to each of the 3 origin stations
+            for station in origin_stations:
+                #get route
+                route = self.gmaps.get_directions(self.start,station["coordinates"],'walking')[0]
 
-            S_S1_routes.append({"station_id": station["station_id"],"route": route})
+                S_S1_routes.append({"id": station["id"],"route": route})
 
-        # find the 5 closest stations to destination with at least 5 slots
-        destination_stations = self.viable_locations(self.destination,5,
-            least=5, least_test="docks")
+            # find the 5 closest stations to destination with at least 5 slots
+            destination_stations = self.viable_locations(self.destination,5,
+                least=5, least_test="docks")
 
-        # find walking directions from each station to destination station
-        for station in destination_stations:
-            #get route
-            route = self.gmaps.get_directions(station["coordinates"],
-                self.destination,'walking')[0]
+            # find walking directions from each station to destination station
+            for station in destination_stations:
+                #get route
+                route = self.gmaps.get_directions(station["coordinates"],
+                    self.destination,'walking')[0]
 
-            D1_D_routes.append({"station_id": station["station_id"],"route": route})
+                D1_D_routes.append({"id": station["id"],"route": route})
 
-        # find biking direction from each starting station to each destination station
-        for S1 in origin_stations:
+            # find biking direction from each starting station to each destination station
+            for S1 in origin_stations:
+                for D1 in destination_stations:
+                    route = self.gmaps.get_directions(S1["coordinates"],D1["coordinates"],
+                        'bicycling')[0]
+
+                    S1_D1_routes.append({"origin_id": S1["id"], "destination_id": D1["id"], "route":route})
+
+            # determine travel time for each path from two walking legs and one biking leg
+            for first_leg in S_S1_routes:
+                for second_leg in S1_D1_routes:
+                    for third_leg in D1_D_routes:
+                        # only combine routes that share stations
+                        if (first_leg["id"] == second_leg["origin_id"]) and (third_leg["id"] == second_leg["destination_id"]):
+
+                            # print_json(first_leg)
+
+                            # print "*"*40
+
+                            # print_json(second_leg)
+
+                            # print "*"*40
+
+                            # print_json(third_leg)
+
+                            # print first_leg["route"]["legs"][0]
+                            # print second_leg["route"]["legs"][0]
+                            # print third_leg["route"]["legs"][0]
+
+
+                            total_time = first_leg["route"]["legs"][0]["duration"]["value"] + \
+                                second_leg["route"]["legs"][0]["duration"]["value"] + \
+                                third_leg["route"]["legs"][0]["duration"]["value"]
+
+                            time_to_D1 = first_leg["route"]["legs"][0]["duration"]["value"] + \
+                                second_leg["route"]["legs"][0]["duration"]["value"]
+
+                            # our confidence level that the destination station will be available at the time of arrival
+                            confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+time_to_D1)
+
+                            travel = {"start_walk": first_leg["route"], "bicycling": second_leg["route"],"end_walk": third_leg["route"]}
+
+                            S_D_routes["bixi"].append({"stations": {"start":first_leg["id"],"end": third_leg["id"]},"path":travel,"time":total_time, "confidence": confidence})
+
+            # finally, get the bus route
+            S_D_routes["bus"] = self.gmaps.get_directions(self.start,self.destination,'transit')[0]
+
+        if reroute:
+            # here, the original end station that the user had selected has had its last space filled up
+
+            # find the 2 closest stations to destination with at least 3 slots
+            destination_stations = self.viable_locations(self.destination,2,
+                least=3, least_test="docks")
+
+            # find walking directions from each station to destination station
+            for station in destination_stations:
+                #get route
+                route = self.gmaps.get_directions(station["coordinates"], self.destination,'walking')[0]
+
+                D1_D_routes.append({"id": station["id"],"route": route})
+
+            # find biking direction from the current location to each destination station
             for D1 in destination_stations:
-                route = self.gmaps.get_directions(S1["coordinates"],D1["coordinates"],
-                    'bicycling')[0]
+                route = self.gmaps.get_directions(reroute_location,D1["coordinates"],'bicycling')[0]
 
-                S1_D1_routes.append({"origin_id": S1["station_id"], 
-                    "destination_id": D1["station_id"], "route":route})
+                S1_D1_routes.append({"origin_id": S1["id"], "destination_id": D1["id"], "route":route})
 
-        # determine travel time for each path from two walking legs and one biking leg
-        for first_leg in S_S1_routes:
+            # package travel information based on two legs of journey
+            max_confidence = 0
             for second_leg in S1_D1_routes:
                 for third_leg in D1_D_routes:
                     # only combine routes that share stations
-                    if (first_leg["station_id"] == second_leg["origin_id"]) and \
-                        (third_leg["station_id"] == second_leg["destination_id"]):
+                    if (third_leg["id"] == second_leg["destination_id"]):
 
                         # print_json(first_leg)
 
@@ -88,51 +155,57 @@ class Routing:
                         # print third_leg["route"]["legs"][0]
 
 
-                        total_time = first_leg["route"]["legs"][0]["duration"]["value"] + \
-                            second_leg["route"]["legs"][0]["duration"]["value"] + \
-                            third_leg["route"]["legs"][0]["duration"]["value"]
+                        total_time = second_leg["route"]["legs"][0]["duration"]["value"] + third_leg["route"]["legs"][0]["duration"]["value"]
 
-                        travel = {"start_walk": first_leg["route"], "bicycling": second_leg["route"], 
-                            "end_walk": third_leg["route"]}
+                        confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+second_leg["route"]["legs"][0]["duration"]["value"])
 
-                        S_D_routes["bixi"].append({"stations": {"start":first_leg["station_id"],
-                            "end": third_leg["station_id"]},"path":travel,"time":total_time})
+                        #only send the user the path we are the most confident about
+                        if confidence > max_confidence:
 
-        # find confidence value for each path based on arrival time
-        # for path in S_D_routes["bixi"]:
-        #     path["confidence"] = get_confidence(path["end"],int(time.time())+path["time"])
+                            travel = {"bicycling": second_leg["route"],"end_walk": third_leg["route"]}
 
-        # finally, get the bus route
-        S_D_routes["bus"] = self.gmaps.get_directions(self.start,self.destination,'transit')[0]
+                            S_D_routes["bixi"] = [{"stations": {"end": third_leg["id"]},"path":travel,"time":total_time, "confidence": confidence}]
+
+            # we do not need a bus route, but we will include a null route for standardization purposes
+            S_D_routes["bus"] = None
 
         return S_D_routes
 
-    def build_path(self,start_location,destination_location):
-        # 1) find closest bixis to start
-        start_bixi = self.viable_locations(start_location,1)[0]
+    def station_selection(self,station_id):
+        # the selection of a station to end at should spawn a thread that will monitor the stations
+        # json file and see if that station goes to 0 empty docks
+        self.station_id = station_id
+        self.file_check_thread = CheckFileThread.CheckFileThread(self.check_file)
+        self.file_check_thread.start()
 
-        # 2) find closest bixi to destination
-        end_bixi = self.viable_locations(destination_location,1)[0]
+    def update_route(self):
+        # we need to find the current location of the user to update the route
+        command = {"action": "get_location","details": self.user_id}
+        location_json = self.send_message(json.dumps(command))
+        location_details = json.loads(location_json)
+        #make sure that the returned dictionary is properly formatted
+        if location_details["action"] == "location":
+            location = location_details["details"]
+            if ('lng' in location.keys()) and ('lat' in location.keys()):
+                # obtain the best new route and send the message about the update to the edge
+                self.routes = self.get_routes(reroute=True,reroute_location=location)
+                message = {"action": "new_route", "details":{"user_id":self.user_id, "routes":self.routes}}
+                self.send_message(json.dumps(message))
+                # restart the file checking process
+                self.station_selection(self.routes["bixi"][0]["stations"]["end"])
+            else:
+                print "expecting details key to contain lng and lat"
+                sys.exit(1)
+        else:
+            print "Error in returned location json"
+            sys.exit(1)
 
-        # 3) obtain path between start and bixi1
-        first_leg = self.gmaps.get_directions(start_location,
-            start_bixi["coordinates"],'walking')[0]
-
-        # 4) obtain path between bixi1 an bixi2
-        second_leg = self.gmaps.get_directions(start_bixi["coordinates"],
-            end_bixi["coordinates"],'bicycling')[0]
-
-        # 5) obtain path between bixi2 and destination
-        third_leg = self.gmaps.get_directions(end_bixi["coordinates"],
-            destination_location,'walking')[0]
-
-        # 6) return a json containing clearly demarcated steps and action ('walking','bicycling')
-        return {"1st":first_leg,"2nd":second_leg,"3rd":third_leg}
+    def send_message(self, message):
+        command = " $ {0} {1} {2} {3}".format(self.client_filename,self.EDGE,self.PORT, message)
+        print command
+        return subprocess.check_output([self.client_filename,self.EDGE,self.PORT, message])
 
     def viable_locations(self,location, number_of_locations, least=0,least_test=None):
-        # print "before location:\t{}".format(location)
-        # else:
-        #   geocode = location
 
         return self.bixis.get_closest_stations(location,self.bixis.stations, 
             number_of_locations, least=least,least_test=least_test)
@@ -143,15 +216,6 @@ class Routing:
         return location_string
 
     def build_directions_matrix(self, start=None,dest=None):
-        # for station1 in self.bixis.CVST.stations:         
-        #   self.bixis.routes[station1["station_id"]] = {}
-        #   for station2 in self.bixis.CVST.stations:
-        #       if station1["station_id"] is not station2["station_id"]:
-        #           print "Obtaining route from station {0} to station {1}".format(
-        #               station1["station_id"], station2["station_id"])
-        #           self.bixis.routes[station1["station_id"]][station2["station_id"]] = \
-        #               self.gmaps.get_directions(station1["coordinates"], station2["coordinates"],
-        #                   'bicycling')
 
         if start != None and dest != None:
             start_subset = self.viable_locations(start,5)
@@ -178,18 +242,19 @@ class Routing:
             print json.dumps(route_json[leg], indent=4, sort_keys=True)
             print "\n{}\n".format("*"*50)
 
-    def check_if_file_updated(self):
+    def check_file(self):
         last_update = os.stat(self.bixi_station_file)[8]
         while not self.finished:
             if os.stat(self.bixi_station_file)[8] != last_update:
-                self.check_file()
+                time.sleep(0.5)
+                # the file has been edited, open it and check if our station has gone to 0 open docks
+                self.bixis.read_stations_file()
+                if self.bixis.is_empty(self.station_id):
+                    # reroute and then die
+                    self.update_route()
+                    break
+
             time.sleep(1)
-
-    def check_file(self):
-        with open(self.bixi_station_file,'r') as bixi_file:
-            self.bixis.stations = json.load(bixi_file)
-
-        """ do some other stuff """
 
 def main():
     test_routes = Routing()
@@ -201,6 +266,8 @@ def print_json(json_object):
     print json.dumps(json_object, indent=4, sort_keys=True)
 # path = test_routes.build_path(start,dest)
 # test_routes.print_route(path)
+
+    end = "{0}T{1}EST".format("".join(date), "".join(time))
 
 if __name__ == "__main__":
     main()

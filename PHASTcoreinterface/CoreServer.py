@@ -2,8 +2,7 @@ __author__ = 'Nhat-Quang'
 import socket
 import json
 from pprint import pprint
-import uuid
-import RoutingThread
+import Routing
 
 HOST, PORT = '', 6633
 
@@ -28,9 +27,13 @@ HOST, PORT = '', 6633
 
 class CoreServer:
 
-    def __init__(self):
+    STATIONS_FILE = "stations.json"
+    CLIENT_FILE = "coreclient.json"
 
+    def __init__(self):
+        self.routing_processes = [None] * 15
         self.outgoing_messages = []
+        self.num_users = 0
 
         self.listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -74,28 +77,53 @@ class CoreServer:
             # HTTP/1.1 200 OK
             # Hello, World!    """
             # http_response = json.dumps(data)
-            client_connection.sendall(result)
+            client_connection.sendall(json.dumps(result))
             client_connection.close()
 
+
     def process_incoming(self,received_json):
-        if received_json["action"] == "new":
-            return new_routing(received_json["details"])
-        else if received_json["action"] == "update":
-            return update_routing(received_json["details"])
+        if received_json["action"] == "new_trip":
+            return self.new_routing(received_json["details"])
+
+            # elif received_json["action"] == "location":
+            #     return new_location(received_json["details"])
+
+        elif received_json["action"] == "selection":
+            # once the selection is made, the routing process will continually check the stations file
+            # and potentially make an update to the path based on full stations
+            return self.station_selection(received_json["details"])
+
+        elif received_json["action"] == "done":
+            # destroy the process that was running for the user specified in details
+            return self.shutdown_process(received_json["details"])
+
+        elif received_json["action"] == "ack":
+            pass # just to prevent blocking
+
         else:
             print "Unknown action"
 
-    def new_routing(self,locations):        
-        user_id = uuid.uuid4()
-        thread = RoutingThread.RoutingThread(user_id,locations,add_outgoing_message)
-        thread.start()
-        return user_id
+    def new_routing(self,details):        
+        user_id = self.new_user_id()
+        self.routing_processes[user_id] = Routing.Routing(user_id,self.STATIONS_FILE,details,self.CLIENT_FILE)
+        return {"action": "routes", "details":{"user_id": user_id, "routes": self.routing_processes[user_id].routes}}
 
-    def update_routing(self,details):
-        return "updated"
+    def station_selection(self,details):
+        self.routing_processes[details["user_id"]].station_selection(details["station_id"])
+
+    # def new_location(self,details):
+    #     self.routing_processes[details["user_id"]].station_selection(details["station_id"])
+
+    def shutdown_process(self, details):
+        self.routing_processes[details["user_id"]].finished = True
+        self.routing_processes[details["user_id"]] = None
 
     def add_outgoing_message(self,message):
         self.outgoing_messages.append(message)
+
+    def new_user_id(self):
+        self.num_users = self.num_users + 1
+        return self.num_users - 1
 
 def main():
     test = CoreServer()

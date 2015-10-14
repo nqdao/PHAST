@@ -4,9 +4,7 @@ import json
 
 HOST, PORT = '', 6633
 
-#Only ever receives a connection when the route has been updated, 
-#otherwise all communication done by userclient and processing usercomm server
-#responses
+#Note used, all communication is in response to messages sent to User Comm Server
 def main():
     listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

@@ -10,27 +10,34 @@ class Bixis:
 
     def __init__(self, stations_file):
         self.routes = {}
+        self.stations_file = stations_file
         self.CVST = CVSTInterface.CVSTInterface()
         self.stations = []
 
         # open up and store the stations if the db file containing their general information
         # already exists.
         # should the db file not exist, build it.
+        self.read_stations_file()
         
-        # if os.path.isfile(self.STATIONS_FILE):
-        with open(stations_file) as data_file:
-            self.stations = json.load(data_file)
-            # else:
-            # 	self.populate_station_locations()
-            # 	with open(self.STATIONS_FILE,'w') as outfile:
-            # 		json.dump(self.stations, outfile, indent=4, sort_keys=True)
+
+    def read_stations_file(self):
+        self.stations = []
+        if os.path.isfile(stations_file):            
+            with open(stations_file) as data_file:
+                self.stations = json.load(data_file)
+        else:
+            self.populate_station_locations()
+            with open(stations_file,'w') as outfile:
+                json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):
         temp_stations = self.CVST.get_all_current_stations()
         for station in temp_stations:
+
+            # print json.dumps(station, indent=4, sort_keys=True)
             # determine lat and long (note that this will only work for locations
             # in both the north and western hemispheres)
-            print "working on station {}".format(station["id"])
+
             if station["coordinates"][0] < 0:
                 lat = station["coordinates"][1]
                 lng = station["coordinates"][0]
@@ -40,8 +47,6 @@ class Bixis:
 
             del station["coordinates"]
             station["coordinates"] = {"lat": lat, "lng": lng}
-
-            station["max_docks"] = self.CVST.get_maximum_docks(station["id"])
             self.stations.append(station)
 
     def get_closest_stations(self, location, stations_list, 
@@ -53,7 +58,7 @@ class Bixis:
         for station in stations_list:
             # only test for a minimum number of bikes if least bikes has been set
             if least_test == "bikes":
-                if station["max_docks"] - station["empty_docks"] >= least:
+                if station["bikes"] >= least:
                     distance = self.get_distance(location, station["coordinates"])
                     if len(closest) < number_of_stations:
                         closest.append({"id": station["id"], "distance": distance,
@@ -121,6 +126,11 @@ class Bixis:
 
     def sort_stations(self, stations_list):
         pass
+
+    def is_empty(self,station_id):
+        for station in self.stations:
+            if station["id"] == station_id:
+                return (station["empty_docks"] == 0)
 
     def calculate_confidence(self, id, arrival_time):
         #arrival_time is in UNIX time
