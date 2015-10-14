@@ -126,7 +126,6 @@ class Bixis:
     def calculate_confidence(self, station_id, arrival_time):
         #arrival_time is in UNIX time
         seconds_in_day = 86400
-        update_interval = 300
         start_interval = arrival_time - 120
         end_interval = arrival_time + 180
         historical_data = (self.CVST.get_current_station_data(station_id))[0]
@@ -140,11 +139,11 @@ class Bixis:
                     empty_docks_list.append(entry["empty_docks"])
                     print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
-                elif (start_interval - days*seconds_in_day) <= entry["timestamp"] < (end_interval - days*seconds_in_day):
+                elif entry["timestamp"] == (end_interval - days*seconds_in_day):
                     empty_docks_list.append(entry["empty_docks"])
                     print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
-                elif (start_interval - days*seconds_in_day) < entry["timestamp"] <= (end_interval - days*seconds_in_day):
+                elif (start_interval - days*seconds_in_day) == entry["timestamp"]:
                     empty_docks_list.append(entry["empty_docks"])
                     print entry["timestamp"], start_interval - days*seconds_in_day, end_interval - days*seconds_in_day
 
