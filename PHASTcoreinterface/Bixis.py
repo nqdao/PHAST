@@ -18,20 +18,22 @@ class Bixis:
         # already exists.
         # should the db file not exist, build it.
         
-        # if os.path.isfile(self.STATIONS_FILE):
-        with open(stations_file) as data_file:
-            self.stations = json.load(data_file)
-            # else:
-            # 	self.populate_station_locations()
-            # 	with open(self.STATIONS_FILE,'w') as outfile:
-            # 		json.dump(self.stations, outfile, indent=4, sort_keys=True)
+        if os.path.isfile(stations_file):
+            with open(stations_file) as data_file:
+                self.stations = json.load(data_file)
+        else:
+        	self.populate_station_locations()
+        	with open(stations_file,'w') as outfile:
+        		json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):
         temp_stations = self.CVST.get_all_current_stations()
         for station in temp_stations:
+
+            # print json.dumps(station, indent=4, sort_keys=True)
             # determine lat and long (note that this will only work for locations
             # in both the north and western hemispheres)
-            print "working on station {}".format(station["station_id"])
+            # print "working on station {}".format(station["id"])
             if station["coordinates"][0] < 0:
                 lat = station["coordinates"][1]
                 lng = station["coordinates"][0]
@@ -41,8 +43,7 @@ class Bixis:
 
             del station["coordinates"]
             station["coordinates"] = {"lat": lat, "lng": lng}
-
-            station["max_docks"] = self.CVST.get_maximum_docks(station["station_id"])
+            # station["max_docks"] = self.CVST.get_maximum_docks(station["id"])
             self.stations.append(station)
 
     def get_closest_stations(self, location, stations_list, 
@@ -54,7 +55,7 @@ class Bixis:
         for station in stations_list:
             # only test for a minimum number of bikes if least bikes has been set
             if least_test == "bikes":
-                if station["max_docks"] - station["empty_docks"] >= least:
+                if station["bikes"] >= least:
                     distance = self.get_distance(location, station["coordinates"])
                     if len(closest) < number_of_stations:
                         closest.append({"station_id": station["station_id"], "distance": distance,
@@ -181,21 +182,21 @@ class Bixis:
 # 	main()
 
 if __name__ == '__main__':
-    bixis = Bixis()
-    while True:
-        updated_station_list = bixis.CVST.get_all_current_stations()
-        for updated_station in updated_station_list:
-            for station in bixis.stations:
-                if updated_station["station_id"] == station["station_id"]:
-                    print "updated_station ", updated_station["station_id"], "station", station["station_id"]
-                    for key in updated_station:
-                        if key == "coordinates":
-                            station["coordinates"]["lat"] = updated_station["coordinates"][1]
-                            station["coordinates"]["lng"] = updated_station["coordinates"][0]
-                        else:
-                            station[key] = updated_station[key]
+    bixis = Bixis("stations.json")
+    # while True:
+    #     updated_station_list = bixis.CVST.get_all_current_stations()
+    #     for updated_station in updated_station_list:
+    #         for station in bixis.stations:
+    #             if updated_station["station_id"] == station["station_id"]:
+    #                 print "updated_station ", updated_station["station_id"], "station", station["station_id"]
+    #                 for key in updated_station:
+    #                     if key == "coordinates":
+    #                         station["coordinates"]["lat"] = updated_station["coordinates"][1]
+    #                         station["coordinates"]["lng"] = updated_station["coordinates"][0]
+    #                     else:
+    #                         station[key] = updated_station[key]
 
-        print "updating CVST data"
-        with open(bixis.STATIONS_FILE, 'w') as outfile:
-            json.dump(bixis.stations, outfile, indent=4, sort_keys=True)
-        time.sleep(10)
+    #     print "updating CVST data"
+    #     with open(bixis.STATIONS_FILE, 'w') as outfile:
+    #         json.dump(bixis.stations, outfile, indent=4, sort_keys=True)
+    #     time.sleep(10)
