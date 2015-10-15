@@ -15,7 +15,10 @@ User: (only communicates with User Comm)
 	"action": "selection",
 	"details": {
 		"user_id" : "",		
-		"selection": ""
+		"selection": {
+			"type":"BIXI|TRANSIT",
+			"number": ""
+		}
 	}
 }
 
@@ -36,6 +39,10 @@ NOTE: It looks like Core returns two options, one BIXI one transit.
 Routes be an array, with added "type" of route, rather than routes have bixi and bus sub-keys,
 each of which forms an array of only one options. 
 Selection response was to be an index into the array of routes, so this still works.
+
+If we have both BIXI and TRANSIT for options, then the "selection" detail should specify the type
+selected as well as the number of the selection for the bixi. If it's transit that has been
+selected, we can just leave the number blank, since we don't care
 
 {	
 	"action": "routes",
