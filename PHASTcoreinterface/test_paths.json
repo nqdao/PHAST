@@ -1,0 +1,1446 @@
+{
+    "bixi": [
+        {
+            "confidence": 0.9932620530009145, 
+            "distance": 2967, 
+            "duration": 1103, 
+            "steps": [
+                {
+                    "distance": {
+                        "text": "0.3 km", 
+                        "value": 276
+                    }, 
+                    "duration": {
+                        "text": "3 mins", 
+                        "value": 207
+                    }, 
+                    "end_location": {
+                        "lat": 43.662246, 
+                        "lng": -79.39767429999999
+                    }, 
+                    "html_instructions": "Head <b>north</b> on <b>St George St</b> toward <b>Galbraith Rd</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "polyline": {
+                        "points": "einiGhdrcNi@RKD{@XUFcAZG@EBA?aAXoA^QFq@RGBa@J"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6598677, 
+                        "lng": -79.3966919
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 423
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 58
+                    }, 
+                    "end_location": {
+                        "lat": 43.658706, 
+                        "lng": -79.395944
+                    }, 
+                    "html_instructions": "Head <b>south</b> on <b>St George St</b> toward <b>Willcocks St</b>", 
+                    "polyline": {
+                        "points": "axniGljrcN`@KFCp@SPGnA_@`AY@?DCFAbA[TGz@YJE`A]v@S^MNENEVKJGFGHGDGJOBEFQBI"
+                    }, 
+                    "start_location": {
+                        "lat": 43.662246, 
+                        "lng": -79.39767429999999
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "1.1 km", 
+                        "value": 1057
+                    }, 
+                    "duration": {
+                        "text": "3 mins", 
+                        "value": 203
+                    }, 
+                    "end_location": {
+                        "lat": 43.6496316, 
+                        "lng": -79.3920933
+                    }, 
+                    "html_instructions": "Continue onto <b>Beverley St</b>", 
+                    "polyline": {
+                        "points": "}aniGr_rcNFI@?DGDCBANGjAc@fF{AnFeBvDiAhBm@bBg@pEuAjDkATIbDcAPGxBo@@Ab@MB?tAc@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.658706, 
+                        "lng": -79.395944
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 367
+                    }, 
+                    "duration": {
+                        "text": "2 mins", 
+                        "value": 119
+                    }, 
+                    "end_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "eiliGpgqcNt@`GFh@nBpOBT@F@P"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6496316, 
+                        "lng": -79.3920933
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 395
+                    }, 
+                    "duration": {
+                        "text": "2 mins", 
+                        "value": 137
+                    }, 
+                    "end_location": {
+                        "lat": 43.6453097, 
+                        "lng": -79.395066
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "ocliG~brcNlA_@|Ag@~Ai@bCw@~FeBXI"
+                    }, 
+                    "start_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 395
+                    }, 
+                    "duration": {
+                        "text": "5 mins", 
+                        "value": 326
+                    }, 
+                    "end_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "html_instructions": "Head <b>north</b> on <b>Spadina Ave</b> toward <b>King St W</b>", 
+                    "polyline": {
+                        "points": "enkiGdzqcNYH_GdBcCv@_Bh@}Af@mA^"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6453097, 
+                        "lng": -79.395066
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "54 m", 
+                        "value": 54
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 53
+                    }, 
+                    "end_location": {
+                        "lat": 43.6488462, 
+                        "lng": -79.3958337
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "ocliG~brcNAQAGCUQqA"
+                    }, 
+                    "start_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "travel_mode": "WALKING"
+                }
+            ], 
+            "summary": "Beverley St"
+        }, 
+        {
+            "confidence": 0.9998765901959134, 
+            "distance": 2145, 
+            "duration": 650, 
+            "steps": [
+                {
+                    "distance": {
+                        "text": "0.3 km", 
+                        "value": 276
+                    }, 
+                    "duration": {
+                        "text": "3 mins", 
+                        "value": 207
+                    }, 
+                    "end_location": {
+                        "lat": 43.662246, 
+                        "lng": -79.39767429999999
+                    }, 
+                    "html_instructions": "Head <b>north</b> on <b>St George St</b> toward <b>Galbraith Rd</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "polyline": {
+                        "points": "einiGhdrcNi@RKD{@XUFcAZG@EBA?aAXoA^QFq@RGBa@J"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6598677, 
+                        "lng": -79.3966919
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 423
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 58
+                    }, 
+                    "end_location": {
+                        "lat": 43.658706, 
+                        "lng": -79.395944
+                    }, 
+                    "html_instructions": "Head <b>south</b> on <b>St George St</b> toward <b>Willcocks St</b>", 
+                    "polyline": {
+                        "points": "axniGljrcN`@KFCp@SPGnA_@`AY@?DCFAbA[TGz@YJE`A]v@S^MNENEVKJGFGHGDGJOBEFQBI"
+                    }, 
+                    "start_location": {
+                        "lat": 43.662246, 
+                        "lng": -79.39767429999999
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.9 km", 
+                        "value": 913
+                    }, 
+                    "duration": {
+                        "text": "3 mins", 
+                        "value": 182
+                    }, 
+                    "end_location": {
+                        "lat": 43.6508755, 
+                        "lng": -79.3925915
+                    }, 
+                    "html_instructions": "Continue onto <b>Beverley St</b>", 
+                    "polyline": {
+                        "points": "}aniGr_rcNFI@?DGDCBANGjAc@fF{AnFeBvDiAhBm@bBg@pEuAjDkATIbDcAPG"
+                    }, 
+                    "start_location": {
+                        "lat": 43.658706, 
+                        "lng": -79.395944
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.3 km", 
+                        "value": 333
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 60
+                    }, 
+                    "end_location": {
+                        "lat": 43.6500948, 
+                        "lng": -79.3965822
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Phoebe St</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "_qliGtjqcNTbB?@RxADT?F@J?J?Nf@dE^zDJl@VfB"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6508755, 
+                        "lng": -79.3925915
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "16 m", 
+                        "value": 16
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 11
+                    }, 
+                    "end_location": {
+                        "lat": 43.6500523, 
+                        "lng": -79.396767
+                    }, 
+                    "html_instructions": "Head <b>west</b> on <b>Phoebe St</b> toward <b>Spadina Ave</b>", 
+                    "polyline": {
+                        "points": "alliGrcrcNFd@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6500948, 
+                        "lng": -79.3965822
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.2 km", 
+                        "value": 150
+                    }, 
+                    "duration": {
+                        "text": "2 mins", 
+                        "value": 103
+                    }, 
+                    "end_location": {
+                        "lat": 43.6487606, 
+                        "lng": -79.3962415
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "ykliGxdrcNv@W~@]hCs@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6500523, 
+                        "lng": -79.396767
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "34 m", 
+                        "value": 34
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 29
+                    }, 
+                    "end_location": {
+                        "lat": 43.6488462, 
+                        "lng": -79.3958337
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Queen St W</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "wcliGnarcNQqA"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6487606, 
+                        "lng": -79.3962415
+                    }, 
+                    "travel_mode": "WALKING"
+                }
+            ], 
+            "summary": "St George St and Beverley St"
+        }, 
+        {
+            "confidence": 0.9932620530009145, 
+            "distance": 2768, 
+            "duration": 1120, 
+            "steps": [
+                {
+                    "distance": {
+                        "text": "13 m", 
+                        "value": 13
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 9
+                    }, 
+                    "end_location": {
+                        "lat": 43.6597528, 
+                        "lng": -79.3966382
+                    }, 
+                    "html_instructions": "Head <b>south</b> on <b>St George St</b>", 
+                    "polyline": {
+                        "points": "einiGhdrcNVI"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6598677, 
+                        "lng": -79.3966919
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "22 m", 
+                        "value": 22
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 24
+                    }, 
+                    "end_location": {
+                        "lat": 43.6596978, 
+                        "lng": -79.39689489999999
+                    }, 
+                    "html_instructions": "Turn <b>right</b> toward <b>Huron St</b><div style=\"font-size:0.9em\">Take the stairs</div>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "mhniG~crcND^@D@J"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6597528, 
+                        "lng": -79.3966382
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "building_level": {
+                        "number": 0
+                    }, 
+                    "distance": {
+                        "text": "84 m", 
+                        "value": 84
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 66
+                    }, 
+                    "end_location": {
+                        "lat": 43.6593113, 
+                        "lng": -79.3974767
+                    }, 
+                    "html_instructions": "Walk for 84&nbsp;m", 
+                    "polyline": {
+                        "points": "chniGpercNRjB@HHPl@Q"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6596978, 
+                        "lng": -79.39689489999999
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "15 m", 
+                        "value": 15
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 10
+                    }, 
+                    "end_location": {
+                        "lat": 43.6591809, 
+                        "lng": -79.397475
+                    }, 
+                    "html_instructions": "Head <b>south</b>", 
+                    "polyline": {
+                        "points": "ueniGfircN@AV@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6593113, 
+                        "lng": -79.3974767
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "30 m", 
+                        "value": 30
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 21
+                    }, 
+                    "end_location": {
+                        "lat": 43.6590999, 
+                        "lng": -79.39782869999999
+                    }, 
+                    "html_instructions": "Turn <b>right</b> toward <b>Huron St</b>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "{dniGfircNNdA"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6591809, 
+                        "lng": -79.397475
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "76 m", 
+                        "value": 76
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 53
+                    }, 
+                    "end_location": {
+                        "lat": 43.6588338, 
+                        "lng": -79.3984112
+                    }, 
+                    "html_instructions": "Turn <b>left</b> toward <b>Huron St</b>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "kdniGlkrcNd@O?JRfBCN"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6590999, 
+                        "lng": -79.39782869999999
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "79 m", 
+                        "value": 79
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 63
+                    }, 
+                    "end_location": {
+                        "lat": 43.6581559, 
+                        "lng": -79.39813029999999
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Huron St</b><div style=\"font-size:0.9em\">Destination will be on the right</div>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "ubniG`orcNfBk@HCFAJE"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6588338, 
+                        "lng": -79.3984112
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.2 km", 
+                        "value": 194
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 25
+                    }, 
+                    "end_location": {
+                        "lat": 43.6564845, 
+                        "lng": -79.3974423
+                    }, 
+                    "html_instructions": "Head <b>south</b> on <b>Huron St</b> toward <b>Cecil St</b>", 
+                    "polyline": {
+                        "points": "o~miGhmrcN|DmAv@UxAe@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6581559, 
+                        "lng": -79.39813029999999
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.2 km", 
+                        "value": 193
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 32
+                    }, 
+                    "end_location": {
+                        "lat": 43.65696399999999, 
+                        "lng": -79.39514
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Cecil St</b>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "_tmiG~hrcNo@gFo@cF"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6564845, 
+                        "lng": -79.3974423
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.9 km", 
+                        "value": 851
+                    }, 
+                    "duration": {
+                        "text": "3 mins", 
+                        "value": 182
+                    }, 
+                    "end_location": {
+                        "lat": 43.6496316, 
+                        "lng": -79.3920933
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Beverley St</b>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "_wmiGrzqcNnFeBvDiAhBm@bBg@pEuAjDkATIbDcAPGxBo@@Ab@MB?tAc@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.65696399999999, 
+                        "lng": -79.39514
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 367
+                    }, 
+                    "duration": {
+                        "text": "2 mins", 
+                        "value": 119
+                    }, 
+                    "end_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "eiliGpgqcNt@`GFh@nBpOBT@F@P"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6496316, 
+                        "lng": -79.3920933
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 395
+                    }, 
+                    "duration": {
+                        "text": "2 mins", 
+                        "value": 137
+                    }, 
+                    "end_location": {
+                        "lat": 43.6453097, 
+                        "lng": -79.395066
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "ocliG~brcNlA_@|Ag@~Ai@bCw@~FeBXI"
+                    }, 
+                    "start_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.4 km", 
+                        "value": 395
+                    }, 
+                    "duration": {
+                        "text": "5 mins", 
+                        "value": 326
+                    }, 
+                    "end_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "html_instructions": "Head <b>north</b> on <b>Spadina Ave</b> toward <b>King St W</b>", 
+                    "polyline": {
+                        "points": "enkiGdzqcNYH_GdBcCv@_Bh@}Af@mA^"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6453097, 
+                        "lng": -79.395066
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "54 m", 
+                        "value": 54
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 53
+                    }, 
+                    "end_location": {
+                        "lat": 43.6488462, 
+                        "lng": -79.3958337
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "ocliG~brcNAQAGCUQqA"
+                    }, 
+                    "start_location": {
+                        "lat": 43.648716, 
+                        "lng": -79.39647540000001
+                    }, 
+                    "travel_mode": "WALKING"
+                }
+            ], 
+            "summary": "Beverley St"
+        }, 
+        {
+            "confidence": 0.9999546000702375, 
+            "distance": 1946, 
+            "duration": 667, 
+            "steps": [
+                {
+                    "distance": {
+                        "text": "13 m", 
+                        "value": 13
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 9
+                    }, 
+                    "end_location": {
+                        "lat": 43.6597528, 
+                        "lng": -79.3966382
+                    }, 
+                    "html_instructions": "Head <b>south</b> on <b>St George St</b>", 
+                    "polyline": {
+                        "points": "einiGhdrcNVI"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6598677, 
+                        "lng": -79.3966919
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "22 m", 
+                        "value": 22
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 24
+                    }, 
+                    "end_location": {
+                        "lat": 43.6596978, 
+                        "lng": -79.39689489999999
+                    }, 
+                    "html_instructions": "Turn <b>right</b> toward <b>Huron St</b><div style=\"font-size:0.9em\">Take the stairs</div>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "mhniG~crcND^@D@J"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6597528, 
+                        "lng": -79.3966382
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "building_level": {
+                        "number": 0
+                    }, 
+                    "distance": {
+                        "text": "84 m", 
+                        "value": 84
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 66
+                    }, 
+                    "end_location": {
+                        "lat": 43.6593113, 
+                        "lng": -79.3974767
+                    }, 
+                    "html_instructions": "Walk for 84&nbsp;m", 
+                    "polyline": {
+                        "points": "chniGpercNRjB@HHPl@Q"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6596978, 
+                        "lng": -79.39689489999999
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "15 m", 
+                        "value": 15
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 10
+                    }, 
+                    "end_location": {
+                        "lat": 43.6591809, 
+                        "lng": -79.397475
+                    }, 
+                    "html_instructions": "Head <b>south</b>", 
+                    "polyline": {
+                        "points": "ueniGfircN@AV@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6593113, 
+                        "lng": -79.3974767
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "30 m", 
+                        "value": 30
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 21
+                    }, 
+                    "end_location": {
+                        "lat": 43.6590999, 
+                        "lng": -79.39782869999999
+                    }, 
+                    "html_instructions": "Turn <b>right</b> toward <b>Huron St</b>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "{dniGfircNNdA"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6591809, 
+                        "lng": -79.397475
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "76 m", 
+                        "value": 76
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 53
+                    }, 
+                    "end_location": {
+                        "lat": 43.6588338, 
+                        "lng": -79.3984112
+                    }, 
+                    "html_instructions": "Turn <b>left</b> toward <b>Huron St</b>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "kdniGlkrcNd@O?JRfBCN"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6590999, 
+                        "lng": -79.39782869999999
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "79 m", 
+                        "value": 79
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 63
+                    }, 
+                    "end_location": {
+                        "lat": 43.6581559, 
+                        "lng": -79.39813029999999
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Huron St</b><div style=\"font-size:0.9em\">Destination will be on the right</div>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "ubniG`orcNfBk@HCFAJE"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6588338, 
+                        "lng": -79.3984112
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.2 km", 
+                        "value": 194
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 25
+                    }, 
+                    "end_location": {
+                        "lat": 43.6564845, 
+                        "lng": -79.3974423
+                    }, 
+                    "html_instructions": "Head <b>south</b> on <b>Huron St</b> toward <b>Cecil St</b>", 
+                    "polyline": {
+                        "points": "o~miGhmrcN|DmAv@UxAe@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6581559, 
+                        "lng": -79.39813029999999
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.2 km", 
+                        "value": 193
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 32
+                    }, 
+                    "end_location": {
+                        "lat": 43.65696399999999, 
+                        "lng": -79.39514
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Cecil St</b>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "_tmiG~hrcNo@gFo@cF"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6564845, 
+                        "lng": -79.3974423
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.7 km", 
+                        "value": 707
+                    }, 
+                    "duration": {
+                        "text": "3 mins", 
+                        "value": 161
+                    }, 
+                    "end_location": {
+                        "lat": 43.6508755, 
+                        "lng": -79.3925915
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Beverley St</b>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "_wmiGrzqcNnFeBvDiAhBm@bBg@pEuAjDkATIbDcAPG"
+                    }, 
+                    "start_location": {
+                        "lat": 43.65696399999999, 
+                        "lng": -79.39514
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.3 km", 
+                        "value": 333
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 60
+                    }, 
+                    "end_location": {
+                        "lat": 43.6500948, 
+                        "lng": -79.3965822
+                    }, 
+                    "html_instructions": "Turn <b>right</b> onto <b>Phoebe St</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-right", 
+                    "polyline": {
+                        "points": "_qliGtjqcNTbB?@RxADT?F@J?J?Nf@dE^zDJl@VfB"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6508755, 
+                        "lng": -79.3925915
+                    }, 
+                    "travel_mode": "BICYCLING"
+                }, 
+                {
+                    "distance": {
+                        "text": "16 m", 
+                        "value": 16
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 11
+                    }, 
+                    "end_location": {
+                        "lat": 43.6500523, 
+                        "lng": -79.396767
+                    }, 
+                    "html_instructions": "Head <b>west</b> on <b>Phoebe St</b> toward <b>Spadina Ave</b>", 
+                    "polyline": {
+                        "points": "alliGrcrcNFd@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6500948, 
+                        "lng": -79.3965822
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "0.2 km", 
+                        "value": 150
+                    }, 
+                    "duration": {
+                        "text": "2 mins", 
+                        "value": 103
+                    }, 
+                    "end_location": {
+                        "lat": 43.6487606, 
+                        "lng": -79.3962415
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "ykliGxdrcNv@W~@]hCs@"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6500523, 
+                        "lng": -79.396767
+                    }, 
+                    "travel_mode": "WALKING"
+                }, 
+                {
+                    "distance": {
+                        "text": "34 m", 
+                        "value": 34
+                    }, 
+                    "duration": {
+                        "text": "1 min", 
+                        "value": 29
+                    }, 
+                    "end_location": {
+                        "lat": 43.6488462, 
+                        "lng": -79.3958337
+                    }, 
+                    "html_instructions": "Turn <b>left</b> onto <b>Queen St W</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                    "maneuver": "turn-left", 
+                    "polyline": {
+                        "points": "wcliGnarcNQqA"
+                    }, 
+                    "start_location": {
+                        "lat": 43.6487606, 
+                        "lng": -79.3962415
+                    }, 
+                    "travel_mode": "WALKING"
+                }
+            ], 
+            "summary": "Beverley St"
+        }
+    ], 
+    "bus": {
+        "bounds": {
+            "northeast": {
+                "lat": 43.6598677, 
+                "lng": -79.3958337
+            }, 
+            "southwest": {
+                "lat": 43.6483238, 
+                "lng": -79.40015939999999
+            }
+        }, 
+        "copyrights": "Map data \u00a92015 Google", 
+        "legs": [
+            {
+                "arrival_time": {
+                    "text": "4:26pm", 
+                    "time_zone": "America/Toronto", 
+                    "value": 1444854367
+                }, 
+                "departure_time": {
+                    "text": "4:13pm", 
+                    "time_zone": "America/Toronto", 
+                    "value": 1444853591
+                }, 
+                "distance": {
+                    "text": "1.7 km", 
+                    "value": 1728
+                }, 
+                "duration": {
+                    "text": "13 mins", 
+                    "value": 776
+                }, 
+                "end_address": "372-380 Queen St W, Toronto, ON M5V 2A5, Canada", 
+                "end_location": {
+                    "lat": 43.6488462, 
+                    "lng": -79.3958337
+                }, 
+                "start_address": "40 St George St, Toronto, ON M5S 2E4, Canada", 
+                "start_location": {
+                    "lat": 43.6598677, 
+                    "lng": -79.3966919
+                }, 
+                "steps": [
+                    {
+                        "distance": {
+                            "text": "0.5 km", 
+                            "value": 538
+                        }, 
+                        "duration": {
+                            "text": "7 mins", 
+                            "value": 408
+                        }, 
+                        "end_location": {
+                            "lat": 43.657477, 
+                            "lng": -79.400065
+                        }, 
+                        "html_instructions": "Walk to Spadina Ave at College St South Side", 
+                        "polyline": {
+                            "points": "einiGhdrcNVID^@D@JRjB@HHPl@Q@AV@LUlA[\\IHSBMn@fFXfCDVZnC@H?J@LAJ?N?F?Td@Mt@U@N"
+                        }, 
+                        "start_location": {
+                            "lat": 43.6598677, 
+                            "lng": -79.3966919
+                        }, 
+                        "steps": [
+                            {
+                                "distance": {
+                                    "text": "13 m", 
+                                    "value": 13
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 9
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6597528, 
+                                    "lng": -79.3966382
+                                }, 
+                                "html_instructions": "Head <b>south</b> on <b>St George St</b>", 
+                                "polyline": {
+                                    "points": "einiGhdrcNVI"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6598677, 
+                                    "lng": -79.3966919
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "22 m", 
+                                    "value": 22
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 24
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6596978, 
+                                    "lng": -79.39689489999999
+                                }, 
+                                "html_instructions": "Turn <b>right</b> toward <b>College St</b><div style=\"font-size:0.9em\">Take the stairs</div>", 
+                                "maneuver": "turn-right", 
+                                "polyline": {
+                                    "points": "mhniG~crcND^@D@J"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6597528, 
+                                    "lng": -79.3966382
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "building_level": {
+                                    "number": 0
+                                }, 
+                                "distance": {
+                                    "text": "84 m", 
+                                    "value": 84
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 66
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6593113, 
+                                    "lng": -79.3974767
+                                }, 
+                                "html_instructions": "Walk for 84&nbsp;m", 
+                                "polyline": {
+                                    "points": "chniGpercNRjB@HHPl@Q"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6596978, 
+                                    "lng": -79.39689489999999
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "15 m", 
+                                    "value": 15
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 10
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6591809, 
+                                    "lng": -79.397475
+                                }, 
+                                "html_instructions": "Head <b>south</b>", 
+                                "polyline": {
+                                    "points": "ueniGfircN@AV@"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6593113, 
+                                    "lng": -79.3974767
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "90 m", 
+                                    "value": 90
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 58
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6584969, 
+                                    "lng": -79.39701099999999
+                                }, 
+                                "html_instructions": "Turn <b>left</b> toward <b>College St</b>", 
+                                "maneuver": "turn-left", 
+                                "polyline": {
+                                    "points": "{dniGfircNLUlA[\\IHSBM"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6591809, 
+                                    "lng": -79.397475
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "0.3 km", 
+                                    "value": 262
+                                }, 
+                                "duration": {
+                                    "text": "3 mins", 
+                                    "value": 200
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6579467, 
+                                    "lng": -79.40015939999999
+                                }, 
+                                "html_instructions": "Turn <b>right</b> onto <b>College St</b>", 
+                                "maneuver": "turn-right", 
+                                "polyline": {
+                                    "points": "s`niGhfrcNn@fFXfCDVZnC@H?J@LAJ?N?F?T"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6584969, 
+                                    "lng": -79.39701099999999
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "52 m", 
+                                    "value": 52
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 41
+                                }, 
+                                "end_location": {
+                                    "lat": 43.657477, 
+                                    "lng": -79.400065
+                                }, 
+                                "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b><div style=\"font-size:0.9em\">Destination will be on the right</div>", 
+                                "maneuver": "turn-left", 
+                                "polyline": {
+                                    "points": "e}miG~yrcNd@Mt@U@N"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6579467, 
+                                    "lng": -79.40015939999999
+                                }, 
+                                "travel_mode": "WALKING"
+                            }
+                        ], 
+                        "travel_mode": "WALKING"
+                    }, 
+                    {
+                        "distance": {
+                            "text": "1.1 km", 
+                            "value": 1088
+                        }, 
+                        "duration": {
+                            "text": "5 mins", 
+                            "value": 300
+                        }, 
+                        "end_location": {
+                            "lat": 43.648319, 
+                            "lng": -79.396352
+                        }, 
+                        "html_instructions": "Light rail towards South - 510 Spadina Towards King", 
+                        "polyline": {
+                            "points": "gzmiGjyrcNGg@tK_D`OiEjA_@hHsBjMuDnAa@DV"
+                        }, 
+                        "start_location": {
+                            "lat": 43.657477, 
+                            "lng": -79.400065
+                        }, 
+                        "transit_details": {
+                            "arrival_stop": {
+                                "location": {
+                                    "lat": 43.648319, 
+                                    "lng": -79.396352
+                                }, 
+                                "name": "Spadina Ave at Queen St West South Side"
+                            }, 
+                            "arrival_time": {
+                                "text": "4:25pm", 
+                                "time_zone": "America/Toronto", 
+                                "value": 1444854300
+                            }, 
+                            "departure_stop": {
+                                "location": {
+                                    "lat": 43.657477, 
+                                    "lng": -79.400065
+                                }, 
+                                "name": "Spadina Ave at College St South Side"
+                            }, 
+                            "departure_time": {
+                                "text": "4:20pm", 
+                                "time_zone": "America/Toronto", 
+                                "value": 1444854000
+                            }, 
+                            "headsign": "South - 510 Spadina Towards King", 
+                            "line": {
+                                "agencies": [
+                                    {
+                                        "name": "TTC", 
+                                        "phone": "1 416-393-4636", 
+                                        "url": "http://www.ttc.ca/"
+                                    }
+                                ], 
+                                "color": "#f27a00", 
+                                "name": "Spadina", 
+                                "short_name": "510", 
+                                "text_color": "#ffffff", 
+                                "vehicle": {
+                                    "icon": "//maps.gstatic.com/mapfiles/transit/iw2/6/tram.png", 
+                                    "name": "Light rail", 
+                                    "type": "TRAM"
+                                }
+                            }, 
+                            "num_stops": 4
+                        }, 
+                        "travel_mode": "TRANSIT"
+                    }, 
+                    {
+                        "distance": {
+                            "text": "0.1 km", 
+                            "value": 102
+                        }, 
+                        "duration": {
+                            "text": "1 min", 
+                            "value": 88
+                        }, 
+                        "end_location": {
+                            "lat": 43.6488462, 
+                            "lng": -79.3958337
+                        }, 
+                        "html_instructions": "Walk to 372-380 Queen St W, Toronto, ON M5V 2A5, Canada", 
+                        "polyline": {
+                            "points": "_aliGdbrcNAEmA^AQAGCUQqA"
+                        }, 
+                        "start_location": {
+                            "lat": 43.648319, 
+                            "lng": -79.396352
+                        }, 
+                        "steps": [
+                            {
+                                "distance": {
+                                    "text": "3 m", 
+                                    "value": 3
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 2
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6483313, 
+                                    "lng": -79.3963156
+                                }, 
+                                "html_instructions": "Head <b>east</b> on <b>Graffiti Alley</b> toward <b>Spadina Ave</b>", 
+                                "polyline": {
+                                    "points": "_aliGdbrcNAE"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.648319, 
+                                    "lng": -79.396352
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "45 m", 
+                                    "value": 45
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 33
+                                }, 
+                                "end_location": {
+                                    "lat": 43.648716, 
+                                    "lng": -79.39647540000001
+                                }, 
+                                "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b>", 
+                                "maneuver": "turn-left", 
+                                "polyline": {
+                                    "points": "aaliG~arcNmA^"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.6483313, 
+                                    "lng": -79.3963156
+                                }, 
+                                "travel_mode": "WALKING"
+                            }, 
+                            {
+                                "distance": {
+                                    "text": "54 m", 
+                                    "value": 54
+                                }, 
+                                "duration": {
+                                    "text": "1 min", 
+                                    "value": 53
+                                }, 
+                                "end_location": {
+                                    "lat": 43.6488462, 
+                                    "lng": -79.3958337
+                                }, 
+                                "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", 
+                                "maneuver": "turn-right", 
+                                "polyline": {
+                                    "points": "ocliG~brcNAQAGCUQqA"
+                                }, 
+                                "start_location": {
+                                    "lat": 43.648716, 
+                                    "lng": -79.39647540000001
+                                }, 
+                                "travel_mode": "WALKING"
+                            }
+                        ], 
+                        "travel_mode": "WALKING"
+                    }
+                ], 
+                "via_waypoint": []
+            }
+        ], 
+        "overview_polyline": {
+            "points": "einiGhdrcNVID^BPTtBHPl@QX?LUlA[\\IHSBMn@fF^~C\\xC?t@?\\zAc@@NGg@v[iJtJsCzOwEDVAEmA^CYUgB"
+        }, 
+        "summary": "", 
+        "warnings": [
+            "Walking directions are in beta.    Use caution \u2013 This route may be missing sidewalks or pedestrian paths."
+        ], 
+        "waypoint_order": []
+    }
+}

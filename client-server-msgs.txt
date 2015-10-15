@@ -1,0 +1,144 @@
+User: (only communicates with User Comm)
+
+***Send:
+
+{	
+	"action": "new_trip",
+	"details": {
+		"user_id" : "",
+		"origin" : "",
+		"destination" : ""  
+	}
+}
+	
+{	
+	"action": "selection",
+	"details": {
+		"user_id" : "",		
+		"selection": ""
+	}
+}
+
+{	
+	"action": "location",
+	"details": {
+		"user_id" : "",		
+		"location": {
+			 "lat" : ""
+			"long" : ""	
+		}
+	}
+}
+		
+***Receive:
+****************
+NOTE: It looks like Core returns two options, one BIXI one transit.
+Routes be an array, with added "type" of route, rather than routes have bixi and bus sub-keys,
+each of which forms an array of only one options. 
+Selection response was to be an index into the array of routes, so this still works.
+
+{	
+	"action": "routes",
+	"details": {
+		"user_id" : "",
+		"routes" : 						 
+				[{	
+					"type":"BIXI|TRANSIT"					
+					"summary" : "",		
+					"distance": "",
+					"duration": "",
+					"confidence": "",
+					"steps" : [...],
+				}, ...
+			]			
+		}
+	}
+}
+
+{	
+	"action": "route_info",
+	"details": {
+		"user_id" : "",
+		"route" :{	
+			"summary" : "",		
+			"distance": "",
+			"duration": "",
+			"confidence": "",
+			"steps" : [...],
+		}
+	}
+}	
+
+{	
+	"action": "new_route",
+	"details": {
+		"user_id" : "",
+		"route" :{	
+			"summary" : "",	
+			"distance": "",
+			"duration": "",
+			"confidence": "",
+			"steps" : [...],
+		}
+	}
+}		
+
+{	
+	"action": "ack",
+	"details": {
+		"user_id" : ""
+	}
+}
+
+{	
+	"action": "done",
+	"details": {
+		"user_id" : ""
+	}
+}
+		
+		
+User Comm:
+	
+***Send:
+	To User: AS ABOVE
+			routes
+			route_info
+			ack
+			new_route
+			done
+	To Core: AS ABOVE
+			new_trip
+			selection
+			location
+			ack
+			done
+	Receive:
+		From User:  AS ABOVE
+			new_trip
+			selection
+			location
+		From Core:
+			routes  -- AS ABOVE
+{	
+	"action": "get_location",
+	"details": {
+		"user_id" : ""
+	}
+}
+			
+			new_route  -- AS ABOVE
+			ack			-- AS ABOVE
+			
+Core: (only communicates with User Comm)
+	Send: AS ABOVE
+		routes
+		ack
+		get_location
+		new_route
+	Receives:  AS ABOVE
+		location
+		new_trip
+		selection
+		ack
+		done

@@ -1,0 +1,23 @@
+{	
+	"action": "routes",
+	"details": {
+		"user_id" : "",
+		"routes" : {
+			"bixi":			 
+				{
+					"summary" : "",		
+					"distance": "5",
+					"duration": "5",
+					"confidence": "90",
+					"steps" : ""
+				},
+			"bus":
+				{
+					"summary" : "",
+					"distance": "10",
+					"duration": "23",
+					"steps" : 	""
+				}
+		}
+	}
+}
