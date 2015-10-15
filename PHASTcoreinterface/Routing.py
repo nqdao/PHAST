@@ -18,8 +18,8 @@ test_locs = {
 
 class Routing:
 
-    EDGE = "10.2.8.3"
-    PORT = 6633
+    EDGE = ''
+    PORT = 6644
 
     def __init__(self, user_id, stations_file, client_filename, origin, destination):
         self.finished = False   # used for the file checking thread for exiting
@@ -27,7 +27,7 @@ class Routing:
         self.user_id = user_id
         self.dest_stations = []
         self.num_origin_stations = 2
-        self.num_destination_stations = 5
+        self.num_destination_stations = 2
         self.client_filename = client_filename  # coreclient.py
         self.bixis = Bixis.Bixis(stations_file)
         self.bixi_station_file = stations_file
@@ -127,9 +127,9 @@ class Routing:
                                 second_leg["route"]["legs"][0]["duration"]["value"]
 
                             # our confidence level that the destination station will be available at the time of arrival
-                            print "testing confidence with parameters:\nstation id: {0}\nArrival time (UNIX): {1}".format(third_leg["id"],int(time.time())+time_to_D1)
+                            # print "testing confidence with parameters:\nstation id: {0}\nArrival time (UNIX): {1}".format(third_leg["id"],int(time.time())+time_to_D1)
                             confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+time_to_D1)
-                            print "resulting confidence: {}\n".format(confidence)
+                            # print "resulting confidence: {}\n".format(confidence)
 
                             total_distance = first_leg["route"]["legs"][0]["distance"]["value"] + second_leg["route"]["legs"][0]["distance"]["value"] + third_leg["route"]["legs"][0]["distance"]["value"]
 
@@ -254,6 +254,7 @@ class Routing:
         command = {"action": "get_location","details":{ "user_id": self.user_id}}
         location_json = self.send_message(json.dumps(command))
         location_details = json.loads(location_json)
+        print_json(location_details)
         #make sure that the returned dictionary is properly formatted
         if location_details["action"] == "location":
             location = location_details["details"]
@@ -274,7 +275,7 @@ class Routing:
     def send_message(self, message):
         command = " $ {0} {1} {2} {3}".format(self.client_filename,self.EDGE,self.PORT, message)
         print command
-        # return subprocess.check_output([self.client_filename,self.EDGE,self.PORT, message])
+        return subprocess.check_output([self.client_filename,self.EDGE,self.PORT, message])
 
     def viable_locations(self,location, number_of_locations, least=0,least_test=None):
 
@@ -340,6 +341,7 @@ def main():
 
 def print_json(json_object):
     print json.dumps(json_object, indent=4, sort_keys=True)
+    print "\n"
 # path = test_routes.build_path(start,dest)
 # test_routes.print_route(path)
 

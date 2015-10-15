@@ -22,7 +22,7 @@ s.connect((HOST, PORT))
 
 s.sendall(json.dumps(dataout))
 
-datain = s.recv(1024)
+datain = s.recv(8192)
 s.close()
 parsed_json = json.loads(datain)
 print parsed_json	

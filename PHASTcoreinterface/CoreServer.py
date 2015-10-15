@@ -5,7 +5,8 @@ from pprint import pprint
 import Routing
 import subprocess
 
-HOST, PORT = '', 6633
+HOST = ''
+PORT = 6633
 
 """
     The CoreServer class which will continually listen for information
@@ -50,8 +51,11 @@ class CoreServer:
         while True:  
 
             client_connection, client_address = self.listen_socket.accept()
-            received_json = json.loads(client_connection.recv(1024))
+            received_json = json.loads(client_connection.recv(8196))
+            print_json(received_json)
             result = self.process_incoming(received_json)
+            print_json(result)
+            print len(json.dumps(result))
             # print request
             # data = load_jason_file('testData.json')
             # http_response = """\
@@ -117,6 +121,10 @@ def load_jason_file(file_name):
     with open(file_name) as data_file:
             data = json.load(data_file)
     return data
+
+def print_json(json_object):
+    print json.dumps(json_object, indent=4, sort_keys=True) 
+    print "\n"
 
 
 if __name__ == '__main__':
