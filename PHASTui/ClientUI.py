@@ -10,8 +10,8 @@ class Gui(wx.Frame):
     HOST, PORT = "142.150.208.139", 6633
     ORIGIN = "University of Toronto"
     LOCATION_LIST = [(0, 0), (1, 1), (2, 2), (10, 10)]
-    INITIAL_URL = "https://maps.googleapis.com/maps/api/staticmap?center=CN+Tower,Toronto,ON&zoom=14&size=800x600&maptype=roadmap"
-    ROUTE_URL = "https://maps.googleapis.com/maps/api/staticmap?size=800x600"
+    INITIAL_URL = "https://maps.googleapis.com/maps/api/staticmap?center=CN+Tower,Toronto,ON&zoom=14&size=900x700&maptype=roadmap"
+    ROUTE_URL = "https://maps.googleapis.com/maps/api/staticmap?size=900x700"
     API_KEY = "&key=AIzaSyA7LGD3TmN87_-Lr8sofhjaylZK1q87ra8"
     PATH_TEMPLATE = ["&path=weight:10%7Ccolor:", "%7Cenc:"]
     MARKER_TEMPLATE = ["&markers=color:", "%7C"]
@@ -19,10 +19,9 @@ class Gui(wx.Frame):
     iterator = 0    # iterate through steps list to keep track of where user is along the route
 
     def __init__(self, parent, title):
-        super(Gui, self).__init__(parent, title=title, size=(1280, 750))
+        super(Gui, self).__init__(parent, title=title, size=(1300, 750))
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
 
         panel = wx.Panel(self)
         sizer = wx.BoxSizer(wx.VERTICAL)
@@ -38,13 +37,12 @@ class Gui(wx.Frame):
         input_box.Add(self.location_box, flag=wx.LEFT | wx.TOP | wx.RIGHT, border=10)
         input_box.Add(self.comp_button, flag=wx.LEFT | wx.TOP, border=10)
 
-        #TODO: this button is only here for SAVI design cmap demo purposes
+        # TODO: this button is only here for SAVI design cmap demo purposes
         self.proceed_button = wx.Button(panel, label="Proceed to next step", size=(150, 50))
         self.proceed_button.Bind(wx.EVT_BUTTON, self.demo_monitor_communication)
         input_box.Add(self.proceed_button, flag=wx.LEFT | wx.TOP, border=10)
         self.instruction = wx.StaticText(panel, label="Instruction here")
         input_box.Add(self.instruction, flag=wx.LEFT | wx.TOP, border=10)
-
 
         img_box = wx.BoxSizer(wx.HORIZONTAL)
         self.img = wx.StaticBitmap(panel, -1, wx.Bitmap(self.img_file, wx.BITMAP_TYPE_ANY))
@@ -60,15 +58,14 @@ class Gui(wx.Frame):
         self.route_3_desc = wx.StaticText(panel, label="Route 3 description")
         self.route_4_desc = wx.StaticText(panel, label="Route 4 description")
 
-
         radio_box.Add(self.route_1_desc, flag=wx.RIGHT | wx.TOP, border=10)
-        radio_box.Add(self.route_1, flag=wx.RIGHT | wx.TOP, border=30)
+        radio_box.Add(self.route_1, flag=wx.RIGHT | wx.TOP, border=75)
         radio_box.Add(self.route_2_desc, flag=wx.RIGHT | wx.TOP, border=10)
-        radio_box.Add(self.route_2, flag=wx.RIGHT | wx.TOP, border=30)
+        radio_box.Add(self.route_2, flag=wx.RIGHT | wx.TOP, border=75)
         radio_box.Add(self.route_3_desc, flag=wx.RIGHT | wx.TOP, border=10)
-        radio_box.Add(self.route_3, flag=wx.RIGHT | wx.TOP, border=30)
+        radio_box.Add(self.route_3, flag=wx.RIGHT | wx.TOP, border=75)
         radio_box.Add(self.route_4_desc, flag=wx.RIGHT | wx.TOP, border=10)
-        radio_box.Add(self.route_4, flag=wx.RIGHT | wx.TOP, border=30)
+        radio_box.Add(self.route_4, flag=wx.RIGHT | wx.TOP, border=75)
 
         img_box.Add(radio_box, flag=wx.RIGHT, border=10)
 
@@ -87,22 +84,24 @@ class Gui(wx.Frame):
             return
         destination = self.location_box.GetValue()
         print destination
-        # self.s.connect((self.HOST, self.PORT))
-        # self.s.sendall(json.dumps(self.construct_new_trip_request(destination)))
-        #
-        # # #receive routes from comm
-        # route_selections = json.loads(self.s.recv(1024))
-        with open("test_bixi_route.json") as test:
-            routes = json.load(test)
-            print self.route_to_url(routes)
-            self.display_map(self.route_to_url(routes))
-        # if route_selections['action'] != 'routes':
-        #     print "ERROR: expecting routes from server"
-        #     return
+        self.s.connect((self.HOST, self.PORT))
+        self.s.sendall(json.dumps(self.construct_new_trip_request(destination)))
+
+        # #receive routes from comm
+        route_selections = json.loads(self.s.recv(1024))
+
+        # with open("test_bixi_route.json") as test:
+        #     routes = json.load(test)
+        #     print self.route_to_url(routes)
+        #     self.display_map(self.route_to_url(routes))
+
+        if route_selections['action'] != 'routes':
+            print "ERROR: expecting routes from server"
+            return
 
 
-        #display and let user select route
-        # self.route_options(route_selections['details']['routes'])
+        # display and let user select route
+        self.route_options(route_selections['details']['routes'])
 
     def display_map(self, url="{0}{1}".format(INITIAL_URL, API_KEY)):
         if os.path.isfile(self.img_file):
@@ -111,16 +110,35 @@ class Gui(wx.Frame):
         self.img.Refresh()
 
     def route_options(self, routes):
-        self.route_1_desc.SetLabel("{0}\n"
-                              "distance: {1}\n"
-                              "duration: {2}\n"
-                              "confidence: {3}".format("Bixi", routes['bixi']['distance'], routes['bixi']['duration'],
-                                                       routes['bixi']['confidence']))
-        self.route_1.Bind(wx.EVT_BUTTON, lambda event: self.route_selection(event, "bixi"))
-        self.route_2_desc.SetLabel("{0}\n"
-                              "distance: {1}\n"
-                              "duration: {2}".format("Bus", routes['bus']['distance'], routes['bus']['duration']))
-        self.route_2.Bind(wx.EVT_BUTTON, lambda event: self.construct_route_selection(event, "bus"))
+        self.route_1_desc.SetLabel("{0} summary: {1}\n"
+                                   "distance: {2}\n"
+                                   "duration: {3}".format("Transit", routes['bus']['summary'], routes['bus']['distance'],
+                                                          routes['bus']['duration']))
+        self.route_1.Bind(wx.EVT_BUTTON, lambda event: self.route_selection(event, 1))
+        self.route_2_desc.SetLabel("{0} summary: {1}\n"
+                                   "distance: {2}\n"
+                                   "duration: {3}\n"
+                                   "confidence: {4}".format("Bixi 1", routes['bixi'][0]['summary'],
+                                                            routes['bixi'][0]['distance'],
+                                                            routes['bixi'][0]['duration'],
+                                                            routes['bixi'][0]['confidence']))
+        self.route_2.Bind(wx.EVT_BUTTON, lambda event: self.construct_route_selection(event, 2))
+        self.route_3_desc.SetLabel("{0} summary: {1}\n"
+                                   "distance: {2}\n"
+                                   "duration: {3}\n"
+                                   "confidence: {4}".format("Bixi 2", routes['bixi'][1]['summary'],
+                                                            routes['bixi'][1]['distance'],
+                                                            routes['bixi'][1]['duration'],
+                                                            routes['bixi'][1]['confidence']))
+        self.route_3.Bind(wx.EVT_BUTTON, lambda event: self.construct_route_selection(event, 2))
+        self.route_3_desc.SetLabel("{0} summary: {1}\n"
+                                   "distance: {2}\n"
+                                   "duration: {3}\n"
+                                   "confidence: {4}".format("Bixi 3", routes['bixi'][2]['summary'],
+                                                            routes['bixi'][2]['distance'],
+                                                            routes['bixi'][2]['duration'],
+                                                            routes['bixi'][2]['confidence']))
+        self.route_4.Bind(wx.EVT_BUTTON, lambda event: self.construct_route_selection(event, 2))
 
     def route_to_url(self, route_info):
         self.steps = route_info['steps']
@@ -217,8 +235,9 @@ class Gui(wx.Frame):
         data_out = {'action': "selection", 'details': {'user_id': 0, 'selection': select}}
         print "selected {0}".format(select)
         self.s.sendall(json.dumps(data_out))
-        self.monitor_communication()
 
+        # commented out for demo simulation
+        # self.monitor_communication()
 
     def construct_location_response(self, i):
         data_out = {'action': "location", 'details': {'user_id': 0, 'location': {'lat': self.steps[i]['start_location']['lat'],
