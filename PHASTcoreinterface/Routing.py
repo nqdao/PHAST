@@ -25,15 +25,16 @@ class Routing:
         self.finished = False   # used for the file checking thread for exiting
         self.station_id = -1
         self.user_id = user_id
+        self.dest_stations = []
         self.num_origin_stations = 2
-        self.num_destination_stations = 2
+        self.num_destination_stations = 5
         self.client_filename = client_filename  # coreclient.py
         self.bixis = Bixis.Bixis(stations_file)
+        self.bixi_station_file = stations_file
         self.gmaps = GoogleMapsInterface.GoogleMapsInterface()
         self.origin = self.convert_string_to_geocode(origin)
         self.destination = self.convert_string_to_geocode(destination)
         self.routes = self.get_routes()
-        self.dest_stations = []
 
         # 
         # "routes" :                   
@@ -49,7 +50,7 @@ class Routing:
         S_S1_routes = []
         S1_D1_routes = []
         D1_D_routes = []
-        S_D_routes = {"bixi": []}
+        S_D_routes = []
 
         if not reroute:
             # get the 6 closest stations to origin with at least 2 bikes
@@ -86,6 +87,15 @@ class Routing:
                         'bicycling')[0]
 
                     S1_D1_routes.append({"origin_id": S1["id"], "destination_id": D1["id"], "route":route})
+
+            # the bus should always be the first route in the list
+            bus  = self.gmaps.get_directions(self.origin,self.destination,'transit')[0]
+            # print_json(bus)
+            S_D_routes.append({"type": "TRANSIT", "summary":"TRANSIT",
+                "distance": bus["legs"][0]["distance"]["value"], "duration":bus["legs"][0]["duration"]["value"], 
+                "confidence": "N/A", "steps": bus["legs"][0]["steps"]})
+
+            unsorted_routes = []
 
             # determine travel time for each path from two walking legs and one biking leg
             for first_leg in S_S1_routes:
@@ -129,13 +139,31 @@ class Routing:
 
                             # print second_leg["route"]
 
-                            S_D_routes["bixi"].append({"summary":second_leg["route"]["summary"],"distance": total_distance,
-                                "duration":total_time, "confidence": confidence, "steps": combined_steps, "destination_station": first_leg["id"]})
+                            unsorted_routes.append({"type": "BIXI", "summary":second_leg["route"]["summary"],"distance": total_distance,
+                                "duration":total_time, "confidence": confidence, "steps": combined_steps, "destination_id":third_leg["id"]})
 
-                            self.dest_stations.append(third_leg["id"])
 
-            # finally, get the bus route
-            S_D_routes["bus"] = self.gmaps.get_directions(self.origin,self.destination,'transit')[0]
+            # find the top three bixi routes based on total time
+            for i in range(3):         
+                count = 0
+                min_time = 99999999
+                best_index = 0
+                for route in unsorted_routes:
+                    if route["duration"] < min_time:
+                        min_time = route["duration"]
+                        best_index = count
+                    count = count + 1
+
+                self.dest_stations.append(unsorted_routes[best_index]["destination_id"])
+                S_D_routes.append(unsorted_routes.pop(best_index))
+
+
+
+            print_json(S_D_routes)
+            # print bus["route"]["legs"][0]["distance"]["value"]
+            # print bus["route"]["legs"][0]["duration"]["value"]
+            # print bus["route"]["summary"]
+            # print bus["route"]["legs"][0]["steps"]
 
         if reroute:
             # here, the original end station that the user had selected has had its last space filled up
@@ -210,10 +238,13 @@ class Routing:
         # the selection of a station to end at should spawn a thread that will monitor the stations
         # json file and see if that station goes to 0 empty docks
         if type(selection) is int:
+            selection = selection - 1
             self.station_id = self.dest_stations[selection]
+            print "station {} selected".format(self.station_id)
         else:
             print "error, expecting int"
             sys.exit(1)
+
 
         self.file_check_thread = CheckFileThread.CheckFileThread(self.check_file)
         self.file_check_thread.start()
@@ -243,7 +274,7 @@ class Routing:
     def send_message(self, message):
         command = " $ {0} {1} {2} {3}".format(self.client_filename,self.EDGE,self.PORT, message)
         print command
-        return subprocess.check_output([self.client_filename,self.EDGE,self.PORT, message])
+        # return subprocess.check_output([self.client_filename,self.EDGE,self.PORT, message])
 
     def viable_locations(self,location, number_of_locations, least=0,least_test=None):
 
@@ -286,19 +317,25 @@ class Routing:
         last_update = os.stat(self.bixi_station_file)[8]
         while not self.finished:
             if os.stat(self.bixi_station_file)[8] != last_update:
+                print "stations file changed"
                 time.sleep(0.5)
                 # the file has been edited, open it and check if our station has gone to 0 open docks
                 self.bixis.read_stations_file()
                 if self.bixis.is_empty(self.station_id):
                     # reroute and then die
-                    self.update_route()
+                    # self.update_route()
+                    print "it's empty"
                     break
 
             time.sleep(1)
 
 def main():
-    test_routes = Routing(1, "stations.json", "coreclient.py", test_locs["origin"], test_locs["destination"])
-    test_routes.export_routes_to_file("test_paths.json")
+    # test_routes = Routing(1, "stations.json", "coreclient.py", test_locs["origin"], test_locs["destination"])
+    # test_routes.export_routes_to_file("test_paths.json")
+
+    testing = Routing(1, "stations.json", "coreclient.py", test_locs["origin"], test_locs["destination"])
+    testing.station_selection(2)
+    print "selected station if is {}".format(testing.station_id)
 
 
 def print_json(json_object):
@@ -306,7 +343,6 @@ def print_json(json_object):
 # path = test_routes.build_path(start,dest)
 # test_routes.print_route(path)
 
-    end = "{0}T{1}EST".format("".join(date), "".join(time))
 
 if __name__ == "__main__":
     main()

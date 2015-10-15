@@ -3,6 +3,7 @@ import socket
 import json
 from pprint import pprint
 import Routing
+import subprocess
 
 HOST, PORT = '', 6633
 
@@ -28,7 +29,7 @@ HOST, PORT = '', 6633
 class CoreServer:
 
     STATIONS_FILE = "stations.json"
-    CLIENT_FILE = "coreclient.json"
+    CLIENT_FILE = "coreclient.py"
 
     def __init__(self):
         self.routing_objects = [None] * 15
@@ -46,27 +47,7 @@ class CoreServer:
 
     def run(self):
 
-        while True:
-        """ either new user:    {
-                                    "action":"new", 
-                                    "details":  
-                                                {
-                                                    "location": {
-                                                                    "origin":<origin>, 
-                                                                    "destionation": <destination>
-                                                                }
-                                                }
-                                }  
-
-            or update:          {
-                                    "action": "update",
-                                    "details":  
-                                                {
-                                                    "user": <UUID>,
-                                                    "location": <location>
-                                                }
-                                }  
-        """       
+        while True:  
 
             client_connection, client_address = self.listen_socket.accept()
             received_json = json.loads(client_connection.recv(1024))
