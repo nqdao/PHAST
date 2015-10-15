@@ -307,6 +307,9 @@ class Routing:
         with open(filename, 'w') as outfile:
             json.dump(self.routes, outfile, indent=4, sort_keys=True)
 
+    def force_finish(self):
+        self.finished = False
+
     def print_route(self,route_json):
         legs = ["1st", "2nd", "3rd"]
         for leg in legs:

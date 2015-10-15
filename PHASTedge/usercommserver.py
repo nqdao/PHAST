@@ -85,12 +85,12 @@ class UserCommServer:
 
 		elif received_json['action'] == 'location':
 			json_resp = {}
-			self.userlist[user_id].location = received_json['location']
-			if checkDone(user_id):
+			self.userlist[user_id].location = received_json["details"]['location']
+			if self.checkDone(user_id):
 				json_resp['action'] = 'done'
-				json_resp['details'] = ''				
+				json_resp['details'] = {"user_id": user_id}				
 				reply = self.coreComm(json_resp)
-			elif send_new_route:
+			elif self.userlist[user_id].send_new_route:
 				json_resp['action'] = 'new_route'
 				json_resp['details'] = { 'user_id' : user_id, 'newroute': self.userlist[user_id].new_route }
 				self.userlist[user_id].send_new_route = False				
@@ -111,8 +111,9 @@ class UserCommServer:
 
 		return json_resp
 
-	def checkDone(self,userid):
-		latlong_dist = math.sqrt( (self.userlist[user_id].location["lat"] - self.userlist[user_id].dest_bixi["lat"]) ** 2 + (self.userlist[user_id].location["lng"] - self.userlist[user_id].dest_bixi["lng"]) ** 2 )
+	def checkDone(self,user_id):
+		latlong_dist = math.sqrt( (self.userlist[user_id].location["lat"] - self.userlist[user_id].dest_bixi["lat"]) ** 2 
+			+ (self.userlist[user_id].location["lng"] - self.userlist[user_id].dest_bixi["lng"]) ** 2 )
 		#0.00045 decimal degrees ~50m, assuming flat earth approximation for very small distances
 		return latlong_dist < 0.00045 
 		

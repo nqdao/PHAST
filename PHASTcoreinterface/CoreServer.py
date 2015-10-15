@@ -102,7 +102,7 @@ class CoreServer:
     #     self.routing_objects[details["user_id"]].station_selection(details["station_id"])
 
     def shutdown_process(self, details):
-        self.routing_objects[details["user_id"]].finished = True
+        self.routing_objects[details["user_id"]].force_finish()
         self.routing_objects[details["user_id"]] = None
         return {"action":"ack", "details":details["user_id"]}
 
