@@ -7,3 +7,4 @@ class User:
 		self.dest_bixi = ''
 		self.new_route = ''
 		self.send_new_route = False
+		self.done = False

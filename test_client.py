@@ -27,7 +27,7 @@ def main():
 
 	selected_route = select_route(route_options, user_id, selection)
 
-	move_on_path(selected_route,0.5,user_id)
+	move_on_path(selected_route,10,user_id)
 
 def get_routes():
 	test_locs = {
@@ -37,6 +37,10 @@ def get_routes():
 	        "lng": -79.396703
 	    }
 	}
+
+	print_json(test_locs)
+
+	time.sleep(5)
 
 	message = {	"action": "new_trip","details": {"user_id" : "","origin" : test_locs["origin"],
 		"destination" : test_locs["destination"] }}
@@ -85,7 +89,7 @@ def move_on_path(selected_route,timing, user_id):
 		print "{0} from {1} to {2}".format(step["travel_mode"], step["start_location"],step["end_location"])
 
 		if tell_server:
-			
+
 			message = {	
 							"action": "location",
 							"details": {
@@ -104,6 +108,8 @@ def move_on_path(selected_route,timing, user_id):
 			datain = s.recv(8192)
 			s.close()
 			parsed_json = json.loads(datain)
+			# print_json(parsed_json)
+			# time.sleep(2)
 
 			# {	
 			# 	"action": "new_route",
@@ -120,18 +126,67 @@ def move_on_path(selected_route,timing, user_id):
 			# }	
 
 			if parsed_json["action"] == "new_route":
-				print "{}problem with origin destination, moving to new route{}".format("*"*20+"\n")
-				move_on_new_path(timing, user_id)
+				print "{0}\nproblem with origin destination, moving to new route\n{0}".format("*"*20)
+				move_on_new_path(parsed_json,timing, user_id)
 				break
 
 			if parsed_json["action"] == "done":
 				print "finished biking"
-
-		time.sleep(timing)
+		if step["travel_mode"] == "BICYCLING":
+			time.sleep(timing)
 	
 
-def move_on_new_path():
-	pass
+def move_on_new_path(selected_route,timing, user_id):
+	tell_server = True
+	# print_json(selected_route)
+	path = selected_route["details"]["newroute"][0]["path"]
+	# print_json(path)
+	steps = path["bicycling"]["legs"][0]["steps"] + path["end_walk"]["legs"][0]["steps"]
+
+	for step in steps:
+		print "{0} from {1} to {2}".format(step["travel_mode"], step["start_location"],step["end_location"])
+
+		if tell_server:
+
+			message = {	
+							"action": "location",
+							"details": {
+								"user_id" : user_id,		
+								"location": step["end_location"]
+							}
+						}
+
+			dataout = json.dumps(message)
+
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))	
+
+			s.sendall(dataout)
+
+			datain = s.recv(8192)
+			s.close()
+			parsed_json = json.loads(datain)
+			# print_json(parsed_json)
+			time.sleep(2)
+
+			# {	
+			# 	"action": "new_route",
+			# 	"details": {
+			# 		"user_id" : "",
+			# 		"route" :{	
+			# 			"summary" : "",	
+			# 			"distance": "",
+			# 			"duration": "",
+			# 			"confidence": "",
+			# 			"steps" : [...],
+			# 		}
+			# 	}
+			# }	
+
+			if parsed_json["action"] == "done":
+				print "finished biking"
+		if step["travel_mode"] == "BICYCLING":
+			time.sleep(timing)
 
 def print_json(json_object):
     print json.dumps(json_object, indent=4, sort_keys=True)

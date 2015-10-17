@@ -230,7 +230,7 @@
             "lng": -79.396555
         }, 
         "date_time": "Wed, 14 Oct 2015 15:50:01 -0000", 
-        "empty_docks": 8, 
+        "empty_docks": 0, 
         "id": 18, 
         "installed": true, 
         "last_seen": "Wed, 14 Oct 2015 15:47:09 -0000", 

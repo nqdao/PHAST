@@ -25,7 +25,7 @@ class UserCommServer:
 	def run(self):
 		while True:        
 			client_connection, client_address = self.listen_socket.accept()
-			received_json = json.loads(client_connection.recv(1024))
+			received_json = json.loads(client_connection.recv(10000))
 			print_json(received_json)
 			result = self.process_incoming(received_json)	
 			print_json(result)	
@@ -83,12 +83,13 @@ class UserCommServer:
 
 			#else we are done and Core should drop the user and re-use user ID
 
-		elif received_json['action'] == 'location':
+		elif (received_json['action'] == 'location'):
 			json_resp = {}
 			self.userlist[user_id].location = received_json["details"]['location']
-			if self.checkDone(user_id):
+			if self.checkDone(user_id) and (not self.userlist[user_id].done):
 				json_resp['action'] = 'done'
-				json_resp['details'] = {"user_id": user_id}				
+				json_resp['details'] = {"user_id": user_id}	
+				self.userlist[user_id].done = True
 				reply = self.coreComm(json_resp)
 			elif self.userlist[user_id].send_new_route:
 				json_resp['action'] = 'new_route'
@@ -101,7 +102,9 @@ class UserCommServer:
 		elif received_json['action'] == 'new_route':
 			#store new route details, forward to user at next location update
 			self.userlist[user_id].send_new_route = True
-			self.userlist[user_id].new_route = received_json['options']			
+			self.userlist[user_id].new_route = received_json['details']["route"]
+			json_resp['action']  = 'ack'
+			json_resp['details'] = ''			
 
 		elif received_json['action'] == 'get_location':
 			#send location to core
