@@ -1,11 +1,13 @@
 import Bixis
-import GoogleMapsInterface
+import GoogleMapsInterface, ConfidenceCalculator
 import json
 import os
 import time
 import sys
 import subprocess
 import CheckFileThread
+import socket
+import pytz, datetime
 
 # test locations
 test_locs = {
@@ -16,18 +18,21 @@ test_locs = {
     }
 }
 
-class Routing:
+HOST = ''
+PORT = 6644
 
-    EDGE = ''
-    PORT = 6644
+class Routing:
 
     def __init__(self, user_id, stations_file, client_filename, origin, destination):
         self.finished = False   # used for the file checking thread for exiting
         self.station_id = -1
         self.user_id = user_id
         self.dest_stations = []
-        self.num_origin_stations = 2
-        self.num_destination_stations = 2
+        self.num_origin_stations = 10
+        self.num_destination_stations = 3
+        self.total_routes = 4
+        self.local = pytz.timezone("Canada/Eastern")
+        self.calc = ConfidenceCalculator.ConfidenceCalculator()
         self.client_filename = client_filename  # coreclient.py
         self.bixis = Bixis.Bixis(stations_file)
         self.bixi_station_file = stations_file
@@ -53,20 +58,32 @@ class Routing:
         S_D_routes = []
 
         if not reroute:
-            # get the 6 closest stations to origin with at least 2 bikes
-            origin_stations = self.viable_locations(self.origin,self.num_origin_stations,least=3, least_test="bikes")
+            # get the 10 closest stations to origin with at least 2 bikes
+            origin_stations = self.viable_locations(self.origin,self.num_origin_stations,least=2, least_test="bikes")
 
-            # print origin_stations[1]
-
-            # pare down to 3 closest origin stations to walking destination
-            origin_stations = self.bixis.get_closest_stations(self.destination,origin_stations,3)
-
-            # find the walking directions to each of the 3 origin stations
+            # find the walking directions to each of the 10 origin stations
             for station in origin_stations:
                 #get route
                 route = self.gmaps.get_directions(self.origin,station["coordinates"],'walking')[0]
 
                 S_S1_routes.append({"id": station["id"],"route": route})
+
+
+            # find the probability that these stations will have bikes upon arrival
+            S_S1_routes = self.pare_by_confidence(S_S1_routes, 0.8)
+
+            print origin_stations
+            sys.exit(1)
+
+            # remove the origin stations that were removed in the above paring
+            removed = 0
+            # for 
+
+            # pare down to 3 closest origin stations to walking destination
+            origin_stations = self.bixis.get_closest_stations(self.destination,origin_stations,3)
+
+            # remove the routes for the stations that were removed in the above paring
+
 
             # find the 5 closest stations to destination with at least 5 slots
             destination_stations = self.viable_locations(self.destination,self.num_destination_stations,
@@ -88,12 +105,12 @@ class Routing:
 
                     S1_D1_routes.append({"origin_id": S1["id"], "destination_id": D1["id"], "route":route})
 
-            # the bus should always be the first route in the list
-            bus  = self.gmaps.get_directions(self.origin,self.destination,'transit')[0]
-            # print_json(bus)
-            S_D_routes.append({"type": "TRANSIT", "summary":"TRANSIT",
-                "distance": bus["legs"][0]["distance"]["value"], "duration":bus["legs"][0]["duration"]["value"], 
-                "confidence": "N/A", "steps": bus["legs"][0]["steps"]})
+            # the walk should always be the first route in the list
+            walk = self.gmaps.get_directions(self.origin,self.destination,'walking')[0]
+            # print_json(walk)
+            S_D_routes.append({"type": "WALKING", "summary":walk["summary"],
+                "distance": walk["legs"][0]["distance"]["value"], "duration":walk["legs"][0]["duration"]["value"], 
+                "confidence": "1", "steps": walk["legs"][0]["steps"]})
 
             unsorted_routes = []
 
@@ -128,9 +145,9 @@ class Routing:
 
                             # our confidence level that the destination station will be available at the time of arrival
                             # print "testing confidence with parameters:\nstation id: {0}\nArrival time (UNIX): {1}".format(third_leg["id"],int(time.time())+time_to_D1)
-                            confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+time_to_D1)
+                            # confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+time_to_D1)
                             # print "resulting confidence: {}\n".format(confidence)
-
+                            confidence = 0.99
                             total_distance = first_leg["route"]["legs"][0]["distance"]["value"] + second_leg["route"]["legs"][0]["distance"]["value"] + third_leg["route"]["legs"][0]["distance"]["value"]
 
                             travel = {"start_walk": first_leg["route"], "bicycling": second_leg["route"],"end_walk": third_leg["route"]}
@@ -144,7 +161,7 @@ class Routing:
 
 
             # find the top three bixi routes based on total time
-            for i in range(3):         
+            for i in range(self.total_routes):         
                 count = 0
                 min_time = 99999999
                 best_index = 0
@@ -159,7 +176,7 @@ class Routing:
 
 
 
-            print_json(S_D_routes)
+            # print_json(S_D_routes)
             # print bus["route"]["legs"][0]["distance"]["value"]
             # print bus["route"]["legs"][0]["duration"]["value"]
             # print bus["route"]["summary"]
@@ -183,7 +200,7 @@ class Routing:
             for D1 in destination_stations:
                 route = self.gmaps.get_directions(reroute_location,D1["coordinates"],'bicycling')[0]
 
-                S1_D1_routes.append({"origin_id": S1["id"], "destination_id": D1["id"], "route":route})
+                S1_D1_routes.append({"destination_id": D1["id"], "route":route})
 
             # package travel information based on two legs of journey
             max_confidence = 0
@@ -208,29 +225,30 @@ class Routing:
 
 
                         total_time = second_leg["route"]["legs"][0]["duration"]["value"] + third_leg["route"]["legs"][0]["duration"]["value"]
+                        time_to_D1 = second_leg["route"]["legs"][0]["duration"]["value"]
+                        confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+time_to_D1)
 
                         #only send the user the path we are the most confident about
                         if confidence > max_confidence:
 
                             travel = {"bicycling": second_leg["route"],"end_walk": third_leg["route"]}
 
-                            S_D_routes["bixi"] = [{"stations": {"end": third_leg["id"]},"path":travel,"time":total_time, "confidence": confidence}]
+                            S_D_routes = [{"stations": {"end": third_leg["id"]},"path":travel,"time":total_time, "confidence": confidence}]
 
-                        time_to_D1 = second_leg["route"]["legs"][0]["duration"]["value"]
+                        
 
-                        # our confidence level that the destination station will be available at the time of arrival
-                        # print "testing confidence with parameters:\nstation id: {0}\nArrival time (UNIX): {1}".format(third_leg["id"],int(time.time())+time_to_D1)
-                        confidence = self.bixis.calculate_confidence(third_leg["id"],int(time.time())+time_to_D1)
-                        # print "resulting confidence: {}\n".format(confidence)
+                            # our confidence level that the destination station will be available at the time of arrival
+                            # print "testing confidence with parameters:\nstation id: {0}\nArrival time (UNIX): {1}".format(third_leg["id"],int(time.time())+time_to_D1)
+                            # print "resulting confidence: {}\n".format(confidence)
 
-                        total_distance = second_leg["route"]["legs"][0]["distance"]["value"] + third_leg["route"]["legs"][0]["distance"]["value"]
+                            # total_distance = second_leg["route"]["legs"][0]["distance"]["value"] + third_leg["route"]["legs"][0]["distance"]["value"]
 
-                        combined_steps = second_leg["route"]["legs"][0]["steps"] + third_leg["route"]["legs"][0]["steps"] 
+                            # combined_steps = second_leg["route"]["legs"][0]["steps"] + third_leg["route"]["legs"][0]["steps"] 
 
-                        # print second_leg["route"]
+                            # # print second_leg["route"]
 
-                        S_D_routes = {"summary":second_leg["route"]["summary"],"distance": total_distance,
-                            "duration":total_time, "confidence": confidence, "steps": combined_steps, "destination_station": third_leg["id"]}
+                            # S_D_routes = {"summary":second_leg["route"]["summary"],"distance": total_distance,
+                            #     "duration":total_time, "confidence": confidence, "steps": combined_steps, "destination_station": third_leg["id"]}
 
         return S_D_routes
 
@@ -249,22 +267,51 @@ class Routing:
         self.file_check_thread = CheckFileThread.CheckFileThread(self.check_file)
         self.file_check_thread.start()
 
+    def pare_by_confidence(self, routes, threshold):
+        # routes should be list of dictionaries in the form of 
+        # [{"id": station["id"],"route": route},.....,{"id": station["id"],"route": route}]
+        probs = []
+
+        for route in routes:
+            # get the total time in seconds that it takes to walk to the station
+            walk_time = route["route"]["legs"][0]["duration"]["value"] + 30     #add 30 seconds to account for calculation and selection
+
+            # get the datetime object for the time walk_time seconds from now
+            end_time = datetime.datetime.fromtimestamp(time.time() + walk_time)
+            local_dt = self.local.localize(end_time,is_dst = None)
+            utc_dt = local_dt.astimezone(pytz.utc)
+            end_time = "{0}:{1}:{2}".format(utc_dt.hour,utc_dt.minute,utc_dt.second)
+
+            # find the probability that there are sufficient bikes at the arrival time
+            # and add this information to the probabilities list
+            probs.append(self.calc.get_probability(route["id"],end_time))
+
+        new_routes = []
+
+        for i in range(len(routes)):
+            print probs[i]
+            if probs[i] > threshold:
+                routes[i]["probability"] = probs[i]
+                new_routes.append(routes[i])
+
+        return new_routes
+
     def update_route(self):
         # we need to find the current location of the user to update the route
         command = {"action": "get_location","details":{ "user_id": self.user_id}}
-        location_json = self.send_message(json.dumps(command))
-        location_details = json.loads(location_json)
+        location_details = self.send_message(command)
         print_json(location_details)
         #make sure that the returned dictionary is properly formatted
         if location_details["action"] == "location":
-            location = location_details["details"]
+            location = location_details["details"]["location"]
             if ('lng' in location.keys()) and ('lat' in location.keys()):
                 # obtain the best new route and send the message about the update to the edge
                 self.routes = self.get_routes(reroute=True,reroute_location=location)
                 message = {"action": "new_route", "details":{"user_id":self.user_id, "route":self.routes}}
-                self.send_message(json.dumps(message))
+                dummy = self.send_message(message)
                 # restart the file checking process
-                self.station_selection = self.routes["bixi"][0]["stations"]["end"]
+                print_json(self.routes)
+                self.station_selection = self.routes[0]["stations"]["end"]
             else:
                 print "expecting details key to contain lng and lat"
                 sys.exit(1)
@@ -273,9 +320,18 @@ class Routing:
             sys.exit(1)
 
     def send_message(self, message):
-        command = " $ {0} {1} {2} {3}".format(self.client_filename,self.EDGE,self.PORT, message)
-        print command
-        return subprocess.check_output([self.client_filename,self.EDGE,self.PORT, message])
+        dataout = json.dumps(message)   
+
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((HOST, PORT)) 
+
+        s.sendall(dataout)
+
+        datain = s.recv(8192)
+        s.close()
+        parsed_json = json.loads(datain)
+
+        return parsed_json
 
     def viable_locations(self,location, number_of_locations, least=0,least_test=None):
 
@@ -321,15 +377,18 @@ class Routing:
         last_update = os.stat(self.bixi_station_file)[8]
         while not self.finished:
             if os.stat(self.bixi_station_file)[8] != last_update:
+
+                last_update = os.stat(self.bixi_station_file)[8]
                 print "stations file changed"
                 time.sleep(0.5)
                 # the file has been edited, open it and check if our station has gone to 0 open docks
                 self.bixis.read_stations_file()
                 if self.bixis.is_empty(self.station_id):
                     # reroute and then die
-                    # self.update_route()
-                    print "it's empty"
+                    self.update_route()
+                    # print "it's empty"
                     break
+
 
             time.sleep(1)
 

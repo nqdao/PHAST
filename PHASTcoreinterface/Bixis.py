@@ -27,7 +27,7 @@ class Bixis:
                 self.stations = json.load(data_file)
         else:
             self.populate_station_locations()
-            with open(stations_file,'w') as outfile:
+            with open(self.stations_file,'w') as outfile:
                 json.dump(self.stations, outfile, indent=4, sort_keys=True)
 
     def populate_station_locations(self):

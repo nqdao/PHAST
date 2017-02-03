@@ -4,6 +4,7 @@ import json
 from pprint import pprint
 import Routing
 import subprocess
+import time
 
 HOST = ''
 PORT = 6633
@@ -55,7 +56,7 @@ class CoreServer:
             print_json(received_json)
             result = self.process_incoming(received_json)
             print_json(result)
-            print len(json.dumps(result))
+            # print len(json.dumps(result))
             # print request
             # data = load_jason_file('testData.json')
             # http_response = """\
@@ -67,6 +68,11 @@ class CoreServer:
 
 
     def process_incoming(self,received_json):
+        # print received_json["action"]
+        # for thing in self.routing_objects:
+        #     print thing
+
+        # time.sleep(3)    
         if received_json["action"] == "new_trip":
             return self.new_routing(received_json["details"])
 
@@ -92,6 +98,9 @@ class CoreServer:
         user_id = self.new_user_id()
         # create a new object to perform routing and store it
         self.routing_objects[user_id] = Routing.Routing(user_id,self.STATIONS_FILE,self.CLIENT_FILE,details["origin"], details["destination"])
+        # print self.routing_objects[user_id]
+        # time.sleep(3)
+
         return {"action": "routes", "details":{"user_id": user_id, "routes": self.routing_objects[user_id].routes}}
 
     def station_selection(self,details):
@@ -102,6 +111,9 @@ class CoreServer:
     #     self.routing_objects[details["user_id"]].station_selection(details["station_id"])
 
     def shutdown_process(self, details):
+        # for thing in self.routing_objects:
+        #     print thing
+
         self.routing_objects[details["user_id"]].force_finish()
         self.routing_objects[details["user_id"]] = None
         return {"action":"ack", "details":details["user_id"]}
