@@ -1,0 +1,173 @@
+
+{
+  "confidence": 0.9932620530009145,
+  "distance": 2967,
+  "duration": 1103,
+  "steps": [
+    {
+      "distance": {
+        "text": "0.3 km",
+        "value": 276
+      },
+      "duration": {
+        "text": "3 mins",
+        "value": 207
+      },
+      "end_location": {
+        "lat": 43.662246,
+        "lng": -79.39767429999999
+      },
+      "html_instructions": "Head <b>north</b> on <b>St George St</b> toward <b>Galbraith Rd</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+      "polyline": {
+        "points": "einiGhdrcNi@RKD{@XUFcAZG@EBA?aAXoA^QFq@RGBa@J"
+      },
+      "start_location": {
+        "lat": 43.6598677,
+        "lng": -79.3966919
+      },
+      "travel_mode": "WALKING"
+    },
+    {
+      "distance": {
+        "text": "0.4 km",
+        "value": 423
+      },
+      "duration": {
+        "text": "1 min",
+        "value": 58
+      },
+      "end_location": {
+        "lat": 43.658706,
+        "lng": -79.395944
+      },
+      "html_instructions": "Head <b>south</b> on <b>St George St</b> toward <b>Willcocks St</b>",
+      "polyline": {
+        "points": "axniGljrcN`@KFCp@SPGnA_@`AY@?DCFAbA[TGz@YJE`A]v@S^MNENEVKJGFGHGDGJOBEFQBI"
+      },
+      "start_location": {
+        "lat": 43.662246,
+        "lng": -79.39767429999999
+      },
+      "travel_mode": "BICYCLING"
+    },
+    {
+      "distance": {
+        "text": "1.1 km",
+        "value": 1057
+      },
+      "duration": {
+        "text": "3 mins",
+        "value": 203
+      },
+      "end_location": {
+        "lat": 43.6496316,
+        "lng": -79.3920933
+      },
+      "html_instructions": "Continue onto <b>Beverley St</b>",
+      "polyline": {
+        "points": "}aniGr_rcNFI@?DGDCBANGjAc@fF{AnFeBvDiAhBm@bBg@pEuAjDkATIbDcAPGxBo@@Ab@MB?tAc@"
+      },
+      "start_location": {
+        "lat": 43.658706,
+        "lng": -79.395944
+      },
+      "travel_mode": "BICYCLING"
+    },
+    {
+      "distance": {
+        "text": "0.4 km",
+        "value": 367
+      },
+      "duration": {
+        "text": "2 mins",
+        "value": 119
+      },
+      "end_location": {
+        "lat": 43.648716,
+        "lng": -79.39647540000001
+      },
+      "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b>",
+      "maneuver": "turn-right",
+      "polyline": {
+        "points": "eiliGpgqcNt@`GFh@nBpOBT@F@P"
+      },
+      "start_location": {
+        "lat": 43.6496316,
+        "lng": -79.3920933
+      },
+      "travel_mode": "BICYCLING"
+    },
+    {
+      "distance": {
+        "text": "0.4 km",
+        "value": 395
+      },
+      "duration": {
+        "text": "2 mins",
+        "value": 137
+      },
+      "end_location": {
+        "lat": 43.6453097,
+        "lng": -79.395066
+      },
+      "html_instructions": "Turn <b>left</b> onto <b>Spadina Ave</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+      "maneuver": "turn-left",
+      "polyline": {
+        "points": "ocliG~brcNlA_@|Ag@~Ai@bCw@~FeBXI"
+      },
+      "start_location": {
+        "lat": 43.648716,
+        "lng": -79.39647540000001
+      },
+      "travel_mode": "BICYCLING"
+    },
+    {
+      "distance": {
+        "text": "0.4 km",
+        "value": 395
+      },
+      "duration": {
+        "text": "5 mins",
+        "value": 326
+      },
+      "end_location": {
+        "lat": 43.648716,
+        "lng": -79.39647540000001
+      },
+      "html_instructions": "Head <b>north</b> on <b>Spadina Ave</b> toward <b>King St W</b>",
+      "polyline": {
+        "points": "enkiGdzqcNYH_GdBcCv@_Bh@}Af@mA^"
+      },
+      "start_location": {
+        "lat": 43.6453097,
+        "lng": -79.395066
+      },
+      "travel_mode": "WALKING"
+    },
+    {
+      "distance": {
+        "text": "54 m",
+        "value": 54
+      },
+      "duration": {
+        "text": "1 min",
+        "value": 53
+      },
+      "end_location": {
+        "lat": 43.6488462,
+        "lng": -79.3958337
+      },
+      "html_instructions": "Turn <b>right</b> onto <b>Queen St W</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+      "maneuver": "turn-right",
+      "polyline": {
+        "points": "ocliG~brcNAQAGCUQqA"
+      },
+      "start_location": {
+        "lat": 43.648716,
+        "lng": -79.39647540000001
+      },
+      "travel_mode": "WALKING"
+    }
+  ],
+  "summary": "Beverley St"
+}
